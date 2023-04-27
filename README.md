@@ -57,4 +57,4 @@ $ ./flappy-bird
 
 -   SFML: Simple and Fast Multimedia Library ([https://www.sfml-dev.org/](https://www.sfml-dev.org/))
 -   Flappy Bird: Original game developed by Dong Nguyen ([https://en.wikipedia.org/wiki/Flappy_Bird](https://en.wikipedia.org/wiki/Flappy_Bird))
--   Assets: Sounds and textures ([https://github.com/samuelcust/flappy-bird-assets])
+-   Assets: Sounds and textures ([https://github.com/samuelcust/flappy-bird-assets](https://github.com/samuelcust/flappy-bird-assets))
