@@ -44,7 +44,7 @@ git clone https://github.com/BlackyDrum/flappy-bird.git
 ```
 cd flappy-bird
 ```
-3. Type ``make`` and press Enter to build the project. The executable ``flappy-bird`` will be generated in the same directory.
+3. Use make to build the project. The executable ``flappy-bird`` will be generated in the same directory.
 ```
 make
 ```
