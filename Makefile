@@ -8,7 +8,7 @@ SRCS = $(wildcard src/*.cpp)
 OBJS = $(SRCS:.cpp=.o)
 
 # Name of the executable file
-TARGET = flappy_bird
+TARGET = flappy-bird
 
 all: $(TARGET)
 
