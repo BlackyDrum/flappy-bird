@@ -14,6 +14,10 @@ Before running the Flappy Bird clone, make sure you have the following installed
 ```
 $ sudo apt-get install libsfml-dev
 ```
+- OpenGL library: You can install it on Debian-based systems with the following command:
+```
+sudo apt-get install libglu1-mesa-dev mesa-common-dev
+```
 - A C++ compiler, such as GCC or Clang
  
 ## Build using Makefile
