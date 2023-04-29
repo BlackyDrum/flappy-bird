@@ -16,23 +16,6 @@ $ sudo apt-get install libsfml-dev
 ```
 - A C++ compiler, such as GCC or Clang
  
-## Installation
-1. Clone the repository to your local machine:
-```
-$ git clone https://github.com/BlackyDrum/flappy-bird.git
-```
-2. Change to the src directory:
-```
-$ cd flappy-bird/src
-```
-3. Build the project using a C++ compiler:
-```
-$ g++ main.cpp -o flappy-bird -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
-```
-4. Run the binary file:
-```
-$ ./flappy-bird
-```
 ## Build using Makefile
 If you have GNU Make installed on your system, you can use the included Makefile to build the project.
 
