@@ -5,6 +5,8 @@
 #include "../imgui/imgui.h"
 #include "../imgui/imgui-SFML.h"
 
+#include "../include/Game.h"
+
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(1280, 720), "Flappy Bird!");
