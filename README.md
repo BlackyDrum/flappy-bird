@@ -19,6 +19,10 @@ $ sudo apt-get install libsfml-dev
 $ sudo apt-get install libglu1-mesa-dev mesa-common-dev
 ```
 - A C++ compiler, such as GCC or Clang
+- On Windows, make sure to set the ``SFML_PATH`` variable to the root path of the SFML library:
+```
+set SFML_PATH=C:\path\to\sfml
+```
  
 ## Build using Makefile
 If you have GNU Make installed on your system, you can use the included Makefile to build the project.
