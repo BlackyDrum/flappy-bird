@@ -1,23 +1,25 @@
-# Compiler options
-CC = g++
-CFLAGS = -Wall -Werror -std=c++17
-LIBS = -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
+CC=g++
+CFLAGS=-std=c++17 -Wall -Wextra -pedantic -g
+LDFLAGS=-lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio -lGL
+INCLUDES=-Iimgui -I/usr/include/SFML
 
-# Source and object files
-SRCS = $(wildcard src/*.cpp)
-OBJS = $(SRCS:.cpp=.o)
+SOURCES=$(wildcard src/*.cpp)
+OBJECTS=$(SOURCES:.cpp=.o)
 
-# Name of the executable file
-TARGET = flappy-bird
+IMGUI_SOURCES=$(wildcard imgui/*.cpp)
+IMGUI_OBJECTS=$(IMGUI_SOURCES:.cpp=.o)
 
-all: $(TARGET)
+EXECUTABLE=flappy-bird
 
-$(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) -o $@ $^ $(LIBS)
+all: $(SOURCES) $(IMGUI_SOURCES) $(EXECUTABLE)
 
-%.o: %.cpp
-	$(CC) $(CFLAGS) -c $< -o $@
+$(EXECUTABLE): $(OBJECTS) $(IMGUI_OBJECTS)
+	$(CC) $(CFLAGS) $(INCLUDES) $^ -o $@ $(LDFLAGS)
+
+.cpp.o:
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
-	rm -f $(OBJS) $(TARGET)
+	rm -f $(OBJECTS) $(IMGUI_OBJECTS) $(EXECUTABLE)
+	rm -rf build/
 
