@@ -1,19 +1,18 @@
 #include <SFML/Graphics.hpp>
+#include <string>
+#include <iostream>
 
 #include "../imgui/imgui.h"
 #include "../imgui/imgui-SFML.h"
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(1280, 720), "SFML works!");
+    sf::RenderWindow window(sf::VideoMode(1280, 720), "Flappy Bird!");
     ImGui::SFML::Init(window);
-
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
 
     sf::Clock delta;
 
-    const char* buf = "test";
+    bool show = false;
 
     while (window.isOpen())
     {
@@ -27,14 +26,23 @@ int main()
         }
         ImGui::SFML::Update(window, delta.restart());
 
-        ImGui::Begin("Console");
-        ImGui::Text("Hello");
 
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
+        {
+            show = true;
+        }
+        
+        if (show)
+        {
+            ImGui::Begin("My First Tool", &show);
+            ImGui::End();
+        }
 
-        ImGui::End();
+        
 
         window.clear();
-        window.draw(shape);
+
+
         ImGui::SFML::Render(window);
         window.display();
     }
