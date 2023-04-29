@@ -1,7 +1,7 @@
 CC=g++
 CFLAGS=-std=c++17 -Wall -Wextra -pedantic -g
 LDFLAGS=-lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio -lGL
-INCLUDES=-Iimgui -Iinclude
+INCLUDES=-Iimgui
 
 SOURCES=$(wildcard src/*.cpp)
 OBJECTS=$(SOURCES:.cpp=.o)
