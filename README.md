@@ -39,7 +39,11 @@ $ cd flappy-bird
 ```
 $ make
 ```
-4. Run the binary file:
+4. Change to the bin directory:
+```
+$ cd bin
+```
+5. Run the binary file:
 ```
 $ ./flappy-bird
 ```
