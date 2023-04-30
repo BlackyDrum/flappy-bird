@@ -90,3 +90,6 @@ packages/
 
 # Include
 !bin/*
+
+# ImGui
+/*.ini
