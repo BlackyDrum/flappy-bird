@@ -14,25 +14,16 @@ Before running the Flappy Bird clone, make sure you have the following installed
 ```
 $ sudo apt-get install libsfml-dev
 ```
+- OpenGL library: You can install it on Debian-based systems with the following command:
+```
+$ sudo apt-get install libglu1-mesa-dev mesa-common-dev
+```
 - A C++ compiler, such as GCC or Clang
+- On Windows, make sure to set the ``SFML_PATH`` variable to the root path of the SFML library:
+```
+set SFML_PATH=C:\path\to\sfml
+```
  
-## Installation
-1. Clone the repository to your local machine:
-```
-$ git clone https://github.com/BlackyDrum/flappy-bird.git
-```
-2. Change to the src directory:
-```
-$ cd flappy-bird/src
-```
-3. Build the project using a C++ compiler:
-```
-$ g++ main.cpp -o flappy-bird -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
-```
-4. Run the binary file:
-```
-$ ./flappy-bird
-```
 ## Build using Makefile
 If you have GNU Make installed on your system, you can use the included Makefile to build the project.
 
@@ -44,11 +35,15 @@ $ git clone https://github.com/BlackyDrum/flappy-bird.git
 ```
 $ cd flappy-bird
 ```
-3. Use make to build the project. The executable ``flappy-bird`` will be generated in the same directory.
+3. Use make to build the project. The executable ``flappy-bird`` will be generated in the bin directory.
 ```
 $ make
 ```
-4. Run the binary file:
+4. Change to the bin directory:
+```
+$ cd bin
+```
+5. Run the binary file (or double click the .exe on windows):
 ```
 $ ./flappy-bird
 ```

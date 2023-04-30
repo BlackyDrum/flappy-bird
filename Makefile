@@ -1,23 +1,30 @@
-# Compiler options
 CC = g++
-CFLAGS = -Wall -Werror -std=c++17
-LIBS = -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
+CFLAGS = -std=c++17 -Wall -Wextra -pedantic -g
+INCLUDES = -I$(SFML_PATH)\include -Iimgui
 
-# Source and object files
-SRCS = $(wildcard src/*.cpp)
-OBJS = $(SRCS:.cpp=.o)
+SOURCES=$(wildcard src/*.cpp)
+OBJECTS=$(SOURCES:.cpp=.o)
 
-# Name of the executable file
-TARGET = flappy-bird
+IMGUI_SOURCES=$(wildcard imgui/*.cpp)
+IMGUI_OBJECTS=$(IMGUI_SOURCES:.cpp=.o)
 
-all: $(TARGET)
+ifeq ($(OS),Windows_NT)
+	EXECUTABLE = bin/flappy-bird.exe
+	LIBS = $(SFML_PATH)\lib\libsfml-graphics.a $(SFML_PATH)\lib\libsfml-window.a $(SFML_PATH)\lib\libsfml-system.a $(SFML_PATH)\lib\libsfml-audio.a -lopengl32
+else
+	EXECUTABLE = bin/flappy-bird
+	LIBS = -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio -lGL
+endif
 
-$(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) -o $@ $^ $(LIBS)
+.PHONY: all clean
 
-%.o: %.cpp
-	$(CC) $(CFLAGS) -c $< -o $@
+all: $(SOURCES) $(IMGUI_SOURCES) $(EXECUTABLE)
+
+$(EXECUTABLE): $(OBJECTS) $(IMGUI_OBJECTS)
+	$(CC) $(CFLAGS) $(INCLUDES) $^ -o $@ $(LIBS)
+
+.cpp.o:
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
-	rm -f $(OBJS) $(TARGET)
-
+	rm -f $(OBJECTS) $(IMGUI_OBJECTS) $(EXECUTABLE)
