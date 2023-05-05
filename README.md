@@ -43,7 +43,7 @@ $ make
 ```
 $ cd bin
 ```
-5. Run the binary file (or double click the .exe on windows):
+5. Run the binary file (or double click the .exe on Windows):
 ```
 $ ./flappy-bird
 ```
