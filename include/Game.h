@@ -20,7 +20,7 @@ public:
 
 void Game::run()
 {
-    sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Flappy Bird!",sf::Style::Close);
+    sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Flappy Bird",sf::Style::Close);
 
     ImGui::SFML::Init(window);
 
