@@ -1,12 +1,9 @@
 # Flappy Bird Clone in SFML!
 This is a C++ project that implements a clone of the popular game Flappy Bird using the Simple and Fast Multimedia Library (SFML).
 
-## Features
--   Classic Flappy Bird gameplay with SFML's collision detection.
--   Simple and intuitive controls using the spacebar to make the bird jump.
--   Randomly generated pipes for endless gameplay.
--   Score tracking and display of the current score.
--   Game over detection with the option to restart the game.
+## Controls
+- SPACE - Add force to the bird
+- ENTER - Open settings with ImGui
 
 ## Prerequisites
 Before running the Flappy Bird clone, make sure you have the following installed on your system:
