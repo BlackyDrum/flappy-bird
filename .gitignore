@@ -3,9 +3,7 @@
 *.suo
 *.sdf
 *.opensdf
-*.vcxproj
 *.vcxproj.user
-*.vcxproj.filters
 
 # C++ object files and executables
 *.obj
