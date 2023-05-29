@@ -9,7 +9,7 @@
 #include <string>
 #include <iostream>
 
-const int SCREEN_WIDTH = 864, SCREEN_HEIGHT = 510;
+const unsigned int SCREEN_WIDTH = 864, SCREEN_HEIGHT = 510;
 
 class Game
 {
