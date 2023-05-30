@@ -21,7 +21,7 @@ void Game::run()
             if (event.type == sf::Event::Closed)
                 window.close();
 
-            if (event.type == sf::Event::KeyPressed)
+            if (event.type == sf::Event::KeyReleased)
             {
                 if (event.key.code == sf::Keyboard::Enter)
                 {

@@ -15,6 +15,8 @@ class Game
 {
 public:
 	static void run();
+private:
+	Game() = default;
 };
 
 #endif
