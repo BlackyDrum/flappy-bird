@@ -10,6 +10,10 @@ void Game::run()
 
     bool showSettings = false;
 
+    World world;
+    if (!world.loadAssets())
+        return;
+
     while (window.isOpen())
     {
         sf::Event event;
@@ -21,13 +25,8 @@ void Game::run()
             if (event.type == sf::Event::Closed)
                 window.close();
 
-            if (event.type == sf::Event::KeyReleased)
-            {
-                if (event.key.code == sf::Keyboard::Enter)
-                {
-                    showSettings = !showSettings;
-                }
-            }
+            if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Enter)
+                showSettings = !showSettings;
         }
 
         ImGui::SFML::Update(window, delta.restart());
@@ -41,7 +40,9 @@ void Game::run()
 
         window.clear();
 
-        ImGui::SFML::Render(window);
+        window.draw(world.get_background());
+
+        ImGui::SFML::Render(window); // Needs to be last thing to draw
 
         window.display();
     }

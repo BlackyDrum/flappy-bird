@@ -6,6 +6,8 @@
 #include "../imgui/imgui.h"
 #include "../imgui/imgui-SFML.h"
 
+#include "World.h"
+
 #include <string>
 #include <iostream>
 
