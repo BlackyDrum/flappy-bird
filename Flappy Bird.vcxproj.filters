@@ -74,5 +74,8 @@
     <ClInclude Include="include\World.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="include\Globals.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

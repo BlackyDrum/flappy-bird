@@ -159,6 +159,7 @@
     <ClInclude Include="imgui\imstb_textedit.h" />
     <ClInclude Include="imgui\imstb_truetype.h" />
     <ClInclude Include="include\Game.h" />
+    <ClInclude Include="include\Globals.h" />
     <ClInclude Include="include\World.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

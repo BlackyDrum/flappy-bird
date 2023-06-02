@@ -1,9 +1,7 @@
 #ifndef _WORLD_H_
 #define _WORLD_H_
 
-#include <SFML/Graphics.hpp>
-
-#include <iostream>
+#include "Globals.h"
 
 class World
 {
