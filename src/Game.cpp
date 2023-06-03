@@ -41,6 +41,7 @@ void Game::run()
         window.clear();
 
         window.draw(world.get_background());
+        window.draw(world.get_ground());
 
         ImGui::SFML::Render(window); // Needs to be last thing to draw
 
