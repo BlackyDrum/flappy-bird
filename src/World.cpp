@@ -26,8 +26,8 @@ void World::moveGround()
 	m_ground.second.setPosition(sf::Vector2f(m_ground.second.getPosition().x - m_moveSpeed,m_ground.second.getPosition().y));
 
 	/*
-	* When one of the two ground sprites reaches the left end of the screen, they are immediately teleported to the right side of the screen
-	* with a little offset, depending if there is a gap between the first and second ground sprite
+	* When one of the two ground sprites reaches the left end of the screen, they are immediately teleported back to the right side of the screen
+	* with a little offset, depending if there is a gap between the first and second ground sprite after teleportation
 	*/
 	if (m_ground.first.getPosition().x <= m_groundTexture.getSize().x * -1.0) 
 		m_ground.first.setPosition(SCREEN_WIDTH - (int(m_ground.first.getPosition().x) * -1.0 - int(m_groundTexture.getSize().x)), m_ground.first.getPosition().y);	
