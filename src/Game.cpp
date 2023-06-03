@@ -40,7 +40,7 @@ void Game::run()
             ImGui::Begin("Settings", &showSettings);
 
             ImGui::SliderInt("Movement Speed", &moveSpeed, 1, 7);
-            ImGui::Checkbox("Dark Background",&darkBackground);
+            ImGui::Checkbox("Night Background",&darkBackground);
 
             ImGui::End();
         }
