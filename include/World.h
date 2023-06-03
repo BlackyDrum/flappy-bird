@@ -11,6 +11,8 @@ public:
 
 	bool loadAssets();
 
+	void changeBackground(bool);
+
 	void moveGround();
 
 	sf::Sprite get_background() const { return m_background; }

@@ -10,6 +10,7 @@ void Game::run()
     sf::Clock delta;
 
     bool showSettings = false;
+    bool darkBackground = false;
 
     int moveSpeed = 3;
 
@@ -39,13 +40,14 @@ void Game::run()
             ImGui::Begin("Settings", &showSettings);
 
             ImGui::SliderInt("Movement Speed", &moveSpeed, 1, 7);
+            ImGui::Checkbox("Dark Background",&darkBackground);
 
             ImGui::End();
         }
 
         world.moveGround();
-
         world.set_moveSpeed(moveSpeed);
+        world.changeBackground(darkBackground);
 
         window.clear();
 
