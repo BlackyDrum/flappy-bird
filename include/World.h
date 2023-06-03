@@ -6,10 +6,17 @@
 class World
 {
 public:
+	World(int moveSpeed)
+		: m_moveSpeed{ moveSpeed } {}
+
 	bool loadAssets();
 
+	void moveGround();
+
 	sf::Sprite get_background() const { return m_background; }
-	sf::Sprite get_ground() const { return m_ground; }
+	std::pair<sf::Sprite, sf::Sprite> get_ground() const { return m_ground; }
+
+	void set_moveSpeed(int moveSpeed) { m_moveSpeed = moveSpeed; }
 
 private:
 	sf::Texture m_backgroundDayTexture;
@@ -17,7 +24,9 @@ private:
 	sf::Sprite m_background;
 
 	sf::Texture m_groundTexture;
-	sf::Sprite m_ground;
+	std::pair<sf::Sprite, sf::Sprite> m_ground;
+
+	int m_moveSpeed;
 };
 
 #endif

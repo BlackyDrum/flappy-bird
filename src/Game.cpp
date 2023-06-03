@@ -3,6 +3,7 @@
 void Game::run()
 {
     sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Flappy Bird", sf::Style::Close);
+    window.setFramerateLimit(60);
 
     ImGui::SFML::Init(window);
 
@@ -10,7 +11,9 @@ void Game::run()
 
     bool showSettings = false;
 
-    World world;
+    int moveSpeed = 3;
+
+    World world{ moveSpeed };
     if (!world.loadAssets())
         return;
 
@@ -34,14 +37,21 @@ void Game::run()
         if (showSettings)
         {
             ImGui::Begin("Settings", &showSettings);
+
+            ImGui::SliderInt("Movement Speed", &moveSpeed, 1, 7);
+
             ImGui::End();
         }
 
+        world.moveGround();
+
+        world.set_moveSpeed(moveSpeed);
 
         window.clear();
 
         window.draw(world.get_background());
-        window.draw(world.get_ground());
+        window.draw(world.get_ground().first);
+        window.draw(world.get_ground().second);
 
         ImGui::SFML::Render(window); // Needs to be last thing to draw
 
