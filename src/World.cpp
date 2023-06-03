@@ -35,13 +35,15 @@ void World::moveGround()
 		m_ground.second.setPosition(SCREEN_WIDTH - (int(m_ground.second.getPosition().x) * -1.0 - int(m_groundTexture.getSize().x)), m_ground.second.getPosition().y);
 }
 
-void World::changeBackground(bool nightBackground)
+void World::changeBackground(int background)
 {
-	if (nightBackground)
+	switch (background)
 	{
+	case 0:
+		m_background.setTexture(m_backgroundDayTexture);
+		break;
+	case 1:
 		m_background.setTexture(m_backgroundNightTexture);
-		return;
+		break;
 	}
-	m_background.setTexture(m_backgroundDayTexture);
-		
 }

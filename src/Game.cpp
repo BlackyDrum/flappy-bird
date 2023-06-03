@@ -10,7 +10,7 @@ void Game::run()
     sf::Clock delta;
 
     bool showSettings = false;
-    bool darkBackground = false;
+    int background = 0;
 
     int moveSpeed = 3;
 
@@ -40,14 +40,22 @@ void Game::run()
             ImGui::Begin("Settings", &showSettings);
 
             ImGui::SliderInt("Movement Speed", &moveSpeed, 1, 7);
-            ImGui::Checkbox("Night Background",&darkBackground);
+            
+            ImGui::NewLine();
 
+            if (ImGui::CollapsingHeader("Update Assets"))
+            {
+                ImGui::RadioButton("Day Background", &background, 0);
+                ImGui::SameLine();
+                ImGui::RadioButton("Night Background", &background, 1);
+            }
+           
             ImGui::End();
         }
 
         world.moveGround();
         world.set_moveSpeed(moveSpeed);
-        world.changeBackground(darkBackground);
+        world.changeBackground(background);
 
         window.clear();
 
