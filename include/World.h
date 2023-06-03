@@ -11,7 +11,8 @@ public:
 	sf::Sprite get_background() const { return m_background; }
 
 private:
-	sf::Texture m_backgroundTexture;
+	sf::Texture m_backgroundDay;
+	sf::Texture m_backgroundNight;
 	sf::Sprite m_background;
 };
 
