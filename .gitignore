@@ -86,8 +86,5 @@ packages/
 *.props
 *.targets
 
-# Include
-!bin/*
-
 # ImGui
 /*.ini
