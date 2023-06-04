@@ -49,9 +49,9 @@ void Game::run()
 
             if (ImGui::CollapsingHeader("Update Assets"))
             {
-                ImGui::RadioButton("Day Background", &background, 0);
+                ImGui::RadioButton("Day Theme", &background, 0);
                 ImGui::SameLine();
-                ImGui::RadioButton("Night Background", &background, 1);
+                ImGui::RadioButton("Night Theme", &background, 1);
             }
            
             ImGui::End();
