@@ -32,15 +32,11 @@ $ git clone https://github.com/BlackyDrum/flappy-bird.git
 ```
 $ cd flappy-bird
 ```
-3. Use make to build the project. The executable ``flappy-bird`` will be generated in the bin directory.
+3. Use make to build the project. The executable ``flappy-bird`` will be generated in the root directory.
 ```
 $ make
 ```
-4. Change to the bin directory:
-```
-$ cd bin
-```
-5. Run the binary file (or double click the .exe on Windows):
+4. Run the binary file (or double click the .exe on Windows):
 ```
 $ ./flappy-bird
 ```
