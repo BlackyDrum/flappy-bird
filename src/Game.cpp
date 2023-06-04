@@ -14,9 +14,7 @@ void Game::run()
     sf::Clock delta;
 
     bool showSettings = false;
-    int background = 0;
-
-    int moveSpeed = 3;
+    int background = 0, moveSpeed = 3;
 
     World world{ moveSpeed };
     if (!world.loadAssets())
@@ -40,22 +38,7 @@ void Game::run()
         ImGui::SFML::Update(window, delta.restart());
 
         if (showSettings)
-        {
-            ImGui::Begin("Settings", &showSettings);
-
-            ImGui::SliderInt("Movement Speed", &moveSpeed, 1, 7);
-            
-            ImGui::NewLine();
-
-            if (ImGui::CollapsingHeader("Update Assets"))
-            {
-                ImGui::RadioButton("Day Theme", &background, 0);
-                ImGui::SameLine();
-                ImGui::RadioButton("Night Theme", &background, 1);
-            }
-           
-            ImGui::End();
-        }
+            settings(showSettings, moveSpeed, background);
 
         world.moveGround();
         world.set_moveSpeed(moveSpeed);
@@ -74,4 +57,22 @@ void Game::run()
 
     ImGui::SFML::Shutdown();
 
+}
+
+void Game::settings(bool& showSettings, int& moveSpeed, int& background)
+{
+    ImGui::Begin("Settings", &showSettings);
+
+    ImGui::SliderInt("Flying Speed", &moveSpeed, 1, 7);
+
+    ImGui::NewLine();
+
+    if (ImGui::CollapsingHeader("Update Assets"))
+    {
+        ImGui::RadioButton("Day Theme", &background, 0);
+        ImGui::SameLine();
+        ImGui::RadioButton("Night Theme", &background, 1);
+    }
+
+    ImGui::End();
 }
