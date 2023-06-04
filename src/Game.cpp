@@ -5,7 +5,7 @@ void Game::run()
     sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Flappy Bird", sf::Style::Close);
     window.setFramerateLimit(60);
 
-#ifdef NDEBUG
+#if defined(NDEBUG) && defined(_WIN32)
     ShowWindow(GetConsoleWindow(), SW_HIDE);
 #endif
 
