@@ -8,6 +8,7 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include <Windows.h>
 
 const unsigned int SCREEN_WIDTH = 864, SCREEN_HEIGHT = 510;
 

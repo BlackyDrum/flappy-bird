@@ -5,6 +5,10 @@ void Game::run()
     sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Flappy Bird", sf::Style::Close);
     window.setFramerateLimit(60);
 
+#ifdef NDEBUG
+    ShowWindow(GetConsoleWindow(), SW_HIDE);
+#endif
+
     ImGui::SFML::Init(window);
 
     sf::Clock delta;
