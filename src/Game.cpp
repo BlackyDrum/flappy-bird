@@ -14,7 +14,7 @@ void Game::run()
     sf::Clock delta;
 
     bool showSettings = false;
-    int background = 0, moveSpeed = 3;
+    int background = 0, moveSpeed = 1;
 
     World world{ moveSpeed };
     if (!world.loadAssets())
