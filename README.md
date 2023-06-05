@@ -1,21 +1,24 @@
 # Flappy Bird Clone in SFML!
-This is a C++ project that implements a clone of the popular game Flappy Bird using the Simple and Fast Multimedia Library (SFML).
+This is a C++ project that implements a clone of the popular game Flappy Bird using SFML.
 
 ## Controls
-- SPACE - Add force to the bird
-- ENTER - Open settings with ImGui
+- ``Space`` - Add force to the bird
+- ``Enter`` - Open settings with ImGui
 
 ## Prerequisites
 Before running the Flappy Bird clone, make sure you have the following installed on your system:
--   SFML library: You can download SFML from the official website ([https://www.sfml-dev.org/](https://www.sfml-dev.org/)) and follow the installation instructions for your operating system, for example on Debian:
+-   SFML library: You can download SFML from the official website ([https://www.sfml-dev.org/](https://www.sfml-dev.org/)) and follow the installation instructions for your operating system, for example on Debian-based systems:
 ```
 $ sudo apt-get install libsfml-dev
 ```
-- OpenGL library: You can install it on Debian-based systems with the following command:
+- OpenGL library: You can install the library with the following command:
 ```
 $ sudo apt-get install libglu1-mesa-dev mesa-common-dev
 ```
 - A C++ compiler, such as GCC or Clang
+```
+$ sudo apt install build-essential
+```
 - On Windows, make sure to set the ``SFML_PATH`` variable to the root path of the SFML library:
 ```
 set SFML_PATH=C:\path\to\sfml
