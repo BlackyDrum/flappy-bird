@@ -18,7 +18,7 @@ $ sudo apt-get install libglu1-mesa-dev mesa-common-dev
 ```
 - A C++ compiler, such as GCC or Clang
 ```
-$ sudo apt install build-essential
+$ sudo apt-get install build-essential
 ```
 - On Windows, make sure to set the ``SFML_PATH`` variable to the root path of the SFML library:
 ```
