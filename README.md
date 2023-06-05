@@ -1,9 +1,10 @@
-# Flappy Bird Clone in SFML!
-This is a C++ project that implements a clone of the popular game Flappy Bird using SFML.
+# Flappy Bird Clone in SFML + ImGui!
+This is a C++ project that implements a clone of the popular game Flappy Bird using SFML.<br>
+You have the option to modify some of the game options/assets such as flying speed, gravity, skins, etc. with ImGui.
 
 ## Controls
 - ``Space`` - Add force to the bird
-- ``Enter`` - Open settings with ImGui
+- ``Enter`` - Open settings
 
 ## Prerequisites
 Before running the Flappy Bird clone, make sure you have the following installed on your system:
