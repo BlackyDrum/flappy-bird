@@ -79,8 +79,6 @@ void Game::run()
             p->setBoundingColor(boundingColor);
         }
 
-        
-
         window.clear();
 
         window.draw(world.get_background());
@@ -127,7 +125,7 @@ void Game::settings(bool& showSettings, int& moveSpeed, int& background, float& 
 
     ImGui::Checkbox("Show Bounding Boxes", &showBoundingBoxes);
     ImGui::SameLine();
-    ImGui::ColorEdit3("test", boundingColor);
+    ImGui::ColorEdit3("Box Color", boundingColor);
 
     ImGui::NewLine();
 
