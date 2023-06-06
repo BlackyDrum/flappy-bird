@@ -15,16 +15,23 @@ public:
 
 	void changeColor(int color);
 
+	void setBoundingColor(float boundingColor[]);
+
 	std::pair<sf::Sprite, sf::Sprite> get_Pipe() const { return m_pipe; }
+	std::pair<sf::RectangleShape, sf::RectangleShape> get_BoundingBox() const { return m_boundingBox; }
 
 	void set_moveSpeed(int moveSpeed) { m_moveSpeed = moveSpeed; }
 	void set_gapBetweenPipes(float gap) { m_gapBetweenPipes = gap; }
 private:
 	sf::Texture m_pipeGreenTexture;
 	sf::Texture m_pipeRedTexture;
+
 	std::pair<sf::Sprite, sf::Sprite> m_pipe;
+	std::pair<sf::RectangleShape, sf::RectangleShape> m_boundingBox;
 
 	sf::Vector2f m_pos;
+
+	sf::Color m_boundingColor;
 
 	float m_gapBetweenPipes;
 	int m_moveSpeed;

@@ -13,7 +13,7 @@ class Game
 public:
 	static void run();
 
-	static void settings(bool& showSettings, int& moveSpeed, int& background, float& gapBetweenPipes, int& pipeColor);
+	static void settings(bool& showSettings, int& moveSpeed, int& background, float& gapBetweenPipes, int& pipeColor, bool& showBoundingBoxes, float boundingColor[]);
 private:
 	Game() = default;
 };

@@ -11,6 +11,7 @@
 #include <time.h>
 #include <random>
 #include <memory.h>
+#include <cmath>
 
 #ifdef _WIN32
 #include <Windows.h>

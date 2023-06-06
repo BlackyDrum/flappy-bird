@@ -13,9 +13,10 @@ void Game::run()
 
     sf::Clock delta;
 
-    bool showSettings = false, gameStart = false;
+    bool showSettings = false, showBoundingBoxes = false, gameStart = false;
     int background = 0, moveSpeed = 1, pipeColor = 0;
     float gapBetweenPipes = 100.0;
+    float boundingColor[3] = { 0 };
 
     Text text;
     if (!text.loadAssets())
@@ -57,7 +58,7 @@ void Game::run()
         ImGui::SFML::Update(window, delta.restart());
 
         if (showSettings)
-            settings(showSettings, moveSpeed, background, gapBetweenPipes, pipeColor);
+            settings(showSettings, moveSpeed, background, gapBetweenPipes, pipeColor, showBoundingBoxes, boundingColor);
 
         /* Move pipes and ground in sync */
         world.moveGround();
@@ -68,15 +69,17 @@ void Game::run()
         } 
 
         world.set_moveSpeed(moveSpeed);
-        for (auto& p : pipes)
-            p->set_moveSpeed(moveSpeed);
-
         world.changeBackground(background);
-        for (auto& p : pipes)
-            p->changeColor(pipeColor);
 
         for (auto& p : pipes)
+        {
+            p->set_moveSpeed(moveSpeed);
+            p->changeColor(pipeColor);
             p->set_gapBetweenPipes(gapBetweenPipes);
+            p->setBoundingColor(boundingColor);
+        }
+
+        
 
         window.clear();
 
@@ -84,8 +87,14 @@ void Game::run()
 
         for (auto& p : pipes)
         {
-            window.draw(p->get_Pipe().first);
+            window.draw(p->get_Pipe().first);          
             window.draw(p->get_Pipe().second);
+            
+            if (gameStart && showBoundingBoxes)
+            {
+                window.draw(p->get_BoundingBox().first);
+                window.draw(p->get_BoundingBox().second);
+            }
         }
             
         window.draw(world.get_ground().first);
@@ -106,13 +115,19 @@ void Game::run()
 
 }
 
-void Game::settings(bool& showSettings, int& moveSpeed, int& background, float& gapBetweenPipes, int& pipeColor)
+void Game::settings(bool& showSettings, int& moveSpeed, int& background, float& gapBetweenPipes, int& pipeColor, bool& showBoundingBoxes, float boundingColor[])
 {
     ImGui::Begin("Settings", &showSettings);
 
     ImGui::SliderInt("Flying Speed", &moveSpeed, 1, 7);
 
     ImGui::SliderFloat("Gap between Pipes", &gapBetweenPipes, 50.0, 140.0);
+
+    ImGui::NewLine();
+
+    ImGui::Checkbox("Show Bounding Boxes", &showBoundingBoxes);
+    ImGui::SameLine();
+    ImGui::ColorEdit3("test", boundingColor);
 
     ImGui::NewLine();
 

@@ -8,10 +8,22 @@ bool Pipe::loadAssets()
 	m_pipe.first.setTexture(m_pipeGreenTexture);
 	m_pipe.second.setTexture(m_pipeGreenTexture);
 
+	m_boundingColor = sf::Color::Red;
+
+	m_boundingBox.first.setFillColor(sf::Color::Transparent);
+	m_boundingBox.first.setOutlineColor(m_boundingColor);
+	m_boundingBox.first.setOutlineThickness(3);
+	m_boundingBox.first.setSize(sf::Vector2f(m_pipe.first.getTexture()->getSize().x, m_pipe.first.getTexture()->getSize().y));
+	m_boundingBox.second.setFillColor(sf::Color::Transparent);
+	m_boundingBox.second.setOutlineColor(m_boundingColor);
+	m_boundingBox.second.setOutlineThickness(3);
+	m_boundingBox.second.setSize(sf::Vector2f(m_pipe.second.getTexture()->getSize().x, m_pipe.second.getTexture()->getSize().y));
+
 	calculateRandomYPos(m_pos.x);
 
 	/* One pipe being mirrored */
 	m_pipe.first.setScale(1.0, -1.0);
+	m_boundingBox.first.setScale(1.0, -1.0);
 
 	return true;
 }
@@ -20,6 +32,9 @@ void Pipe::movePipes()
 {
 	m_pipe.first.setPosition(m_pipe.first.getPosition().x - m_moveSpeed, m_pipe.first.getPosition().y);
 	m_pipe.second.setPosition(m_pipe.second.getPosition().x - m_moveSpeed, m_pipe.second.getPosition().y);
+
+	m_boundingBox.first.setPosition(m_pipe.first.getPosition());
+	m_boundingBox.second.setPosition(m_pipe.second.getPosition());
 
 	/*
 	* When both pipes reach the left end of the screen, they are both immediately teleported back to the right side of the screen.
@@ -66,4 +81,14 @@ void Pipe::changeColor(int color)
 		m_pipe.first.setTexture(m_pipeGreenTexture);
 		m_pipe.second.setTexture(m_pipeGreenTexture);
 	}
+}
+
+void Pipe::setBoundingColor(float boundingColor[])
+{
+	m_boundingColor.r = round(boundingColor[0] * 255);
+	m_boundingColor.g = round(boundingColor[1] * 255);
+	m_boundingColor.b = round(boundingColor[2] * 255);
+
+	m_boundingBox.first.setOutlineColor(m_boundingColor);
+	m_boundingBox.second.setOutlineColor(m_boundingColor);
 }
