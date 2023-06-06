@@ -3,7 +3,7 @@ This is a C++ project that implements a clone of the popular game Flappy Bird us
 You have the option to modify some of the game options/assets such as flying speed, gravity, skins, etc. with ImGui.
 
 ## Controls
-- ``Space`` - Add force to the bird
+- ``Space`` / ``Left Click`` - Add force to the bird
 - ``Enter`` - Open settings
 
 ## Prerequisites
