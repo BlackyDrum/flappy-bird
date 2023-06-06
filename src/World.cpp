@@ -23,7 +23,7 @@ void World::moveGround()
 	* Move the two ground sprites towards the left side of the screen
 	*/
 	m_ground.first.setPosition(m_ground.first.getPosition().x - m_moveSpeed,m_ground.first.getPosition().y);
-	m_ground.second.setPosition(sf::Vector2f(m_ground.second.getPosition().x - m_moveSpeed,m_ground.second.getPosition().y));
+	m_ground.second.setPosition(m_ground.second.getPosition().x - m_moveSpeed,m_ground.second.getPosition().y);
 
 	int offsetFirst = int(m_ground.first.getPosition().x) * -1.0 - int(m_groundTexture.getSize().x);
 	int offsetSecond = int(m_ground.second.getPosition().x) * -1.0 - int(m_groundTexture.getSize().x);
