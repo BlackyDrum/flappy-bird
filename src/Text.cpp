@@ -9,6 +9,7 @@ bool Text::loadAssets()
 	m_start.setString("Press Space to start");
 	m_start.setCharacterSize(100);
 
+	/* position the text in the middle of the screen */
 	sf::FloatRect textRect = m_start.getLocalBounds();
 	m_start.setOrigin(textRect.left + textRect.width / 2.0f,
 		textRect.top + textRect.height / 2.0f);

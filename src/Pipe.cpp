@@ -53,6 +53,7 @@ void Pipe::movePipes()
 
 void Pipe::calculateRandomYPos(float x)
 {
+	/* Generate random number */
 	std::random_device dev;
 	std::mt19937 rng(dev());
 	std::uniform_int_distribution<std::mt19937::result_type> dist6(10, SCREEN_HEIGHT / 2);
