@@ -5,13 +5,15 @@
 #include "../imgui/imgui-SFML.h"
 
 #include "World.h"
+#include "Pipe.h"
+#include "Text.h"
 
 class Game
 {
 public:
 	static void run();
 
-	static void settings(bool& showSettings, int& moveSpeed, int& background);
+	static void settings(bool& showSettings, int& moveSpeed, int& background, float& gapBetweenPipes, int& pipeColor);
 private:
 	Game() = default;
 };

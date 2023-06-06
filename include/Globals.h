@@ -8,6 +8,9 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include <time.h>
+#include <random>
+#include <memory.h>
 
 #ifdef _WIN32
 #include <Windows.h>
