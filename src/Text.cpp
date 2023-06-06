@@ -9,11 +9,18 @@ bool Text::loadAssets()
 	m_start.setString("Press Space to start");
 	m_start.setCharacterSize(100);
 
+	m_pause.setFont(m_font);
+	m_pause.setString("Game Paused");
+	m_pause.setCharacterSize(100);
+
 	/* position the text in the middle of the screen */
-	sf::FloatRect textRect = m_start.getLocalBounds();
-	m_start.setOrigin(textRect.left + textRect.width / 2.0f,
-		textRect.top + textRect.height / 2.0f);
+	m_start.setOrigin(m_start.getLocalBounds().left + m_start.getLocalBounds().width / 2.0f,
+		m_start.getLocalBounds().top + m_start.getLocalBounds().height / 2.0f);
 	m_start.setPosition(sf::Vector2f(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f));
+
+	m_pause.setOrigin(m_pause.getLocalBounds().left + m_pause.getLocalBounds().width / 2.0f,
+		m_pause.getLocalBounds().top + m_pause.getLocalBounds().height / 2.0f);
+	m_pause.setPosition(sf::Vector2f(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f));
 
 	return true;
 }

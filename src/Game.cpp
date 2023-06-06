@@ -13,7 +13,7 @@ void Game::run()
 
     sf::Clock delta;
 
-    bool showSettings = false, showBoundingBoxes = false, gameStart = false;
+    bool showSettings = false, showBoundingBoxes = false, gameStart = false, gamePause = false;
     int background = 0, moveSpeed = 1, pipeColor = 0;
     float gapBetweenPipes = 100.0;
     float boundingColorRGB[3] = { 0 };
@@ -52,6 +52,8 @@ void Game::run()
             {
                 if (event.key.code == sf::Keyboard::Space)
                     gameStart = true;
+                else if (event.key.code == sf::Keyboard::Escape)
+                    gamePause = !gamePause;
             }
         }
 
@@ -61,12 +63,15 @@ void Game::run()
             settings(showSettings, moveSpeed, background, gapBetweenPipes, pipeColor, showBoundingBoxes, boundingColorRGB);
 
         /* Move pipes and ground in sync */
-        world.moveGround();
-        if (gameStart)
+        if (!gamePause)
         {
-            for (auto& p : pipes)
-                p->movePipes();
-        } 
+            world.moveGround();
+            if (gameStart)
+            {
+                for (auto& p : pipes)
+                    p->movePipes();
+            }
+        }
 
         world.set_moveSpeed(moveSpeed);
         world.changeBackground(background);
@@ -100,6 +105,8 @@ void Game::run()
 
         if (!gameStart)
             window.draw(text.get_start());
+        if (gameStart && gamePause)
+            window.draw(text.get_pause());
 
         ImGui::SFML::Render(window); // Needs to be last thing to be drawn
 
@@ -119,7 +126,7 @@ void Game::settings(bool& showSettings, int& moveSpeed, int& background, float& 
 
     ImGui::SliderInt("Flying Speed", &moveSpeed, 1, 7);
 
-    ImGui::SliderFloat("Gap between Pipes", &gapBetweenPipes, 50.0, 140.0);
+    ImGui::SliderFloat("Gap between Pipes", &gapBetweenPipes, 60.0, 140.0);
 
     ImGui::NewLine();
 

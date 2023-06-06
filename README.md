@@ -5,6 +5,7 @@ You have the option to modify some of the game options/assets such as flying spe
 ## Controls
 - ``Space`` - Add force to the bird
 - ``Enter`` - Open settings
+- ``Escape`` - Pause
 
 ## Prerequisites
 Before running the Flappy Bird clone, make sure you have the following installed on your system:

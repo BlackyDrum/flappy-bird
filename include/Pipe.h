@@ -26,6 +26,9 @@ private:
 	sf::Texture m_pipeGreenTexture;
 	sf::Texture m_pipeRedTexture;
 
+	/*
+	* One Pipe object consists of two sprites, a lower and an upper pipe. The upper sprite is mirrored.
+	*/
 	std::pair<sf::Sprite, sf::Sprite> m_pipe;
 	std::pair<sf::RectangleShape, sf::RectangleShape> m_boundingBox;
 
