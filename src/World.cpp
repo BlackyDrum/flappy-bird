@@ -49,5 +49,7 @@ void World::changeBackground(int background)
 	case 1:
 		m_background.setTexture(m_backgroundNightTexture);
 		break;
+	default:
+		m_background.setTexture(m_backgroundDayTexture);
 	}
 }
