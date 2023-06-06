@@ -49,7 +49,7 @@ void Game::run()
                 showSettings = !showSettings;
             else if (event.type == sf::Event::KeyPressed)
             {
-                if (event.key.code == sf::Mouse::Left || event.key.code == sf::Keyboard::Space)
+                if (event.key.code == sf::Keyboard::Space)
                     gameStart = true;
             }
         }
