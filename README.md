@@ -16,7 +16,7 @@ $ sudo apt-get install libsfml-dev
 ```
 $ sudo apt-get install libglu1-mesa-dev mesa-common-dev
 ```
-- A C++ compiler, such as GCC or Clang
+- A C++ compiler, e.g. ``GCC``
 ```
 $ sudo apt-get install build-essential
 ```
@@ -26,7 +26,7 @@ set SFML_PATH=C:\path\to\sfml
 ```
  
 ## Build using Makefile
-If you have GNU Make installed on your system, you can use the included Makefile to build the project.
+If you have ``GNU Make`` installed on your system, you can use the included ``Makefile`` to build the project.
 
 1. Clone the repository to your local machine:
 ```
