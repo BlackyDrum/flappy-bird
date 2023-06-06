@@ -14,6 +14,7 @@ bool Pipe::loadAssets()
 	m_boundingBox.first.setOutlineColor(m_boundingColor);
 	m_boundingBox.first.setOutlineThickness(3);
 	m_boundingBox.first.setSize(sf::Vector2f(m_pipe.first.getTexture()->getSize().x, m_pipe.first.getTexture()->getSize().y));
+
 	m_boundingBox.second.setFillColor(sf::Color::Transparent);
 	m_boundingBox.second.setOutlineColor(m_boundingColor);
 	m_boundingBox.second.setOutlineThickness(3);
@@ -59,7 +60,7 @@ void Pipe::calculateRandomYPos(float x)
 	float yPos = dist6(rng);
 
 	/*
-	* Both Pipes use the same y-position, being seperated by a little offset the player is able to adjust
+	* Both Pipes use the same y-position, being seperated by a little offset
 	*/
 	m_pipe.first.setPosition(x, yPos);
 	m_pipe.second.setPosition(x, yPos + m_gapBetweenPipes);
@@ -83,11 +84,11 @@ void Pipe::changeColor(int color)
 	}
 }
 
-void Pipe::setBoundingColor(float boundingColor[])
+void Pipe::setBoundingColor(float RGB[])
 {
-	m_boundingColor.r = round(boundingColor[0] * 255);
-	m_boundingColor.g = round(boundingColor[1] * 255);
-	m_boundingColor.b = round(boundingColor[2] * 255);
+	m_boundingColor.r = round(RGB[0] * 255);
+	m_boundingColor.g = round(RGB[1] * 255);
+	m_boundingColor.b = round(RGB[2] * 255);
 
 	m_boundingBox.first.setOutlineColor(m_boundingColor);
 	m_boundingBox.second.setOutlineColor(m_boundingColor);

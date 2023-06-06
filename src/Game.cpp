@@ -16,7 +16,7 @@ void Game::run()
     bool showSettings = false, showBoundingBoxes = false, gameStart = false;
     int background = 0, moveSpeed = 1, pipeColor = 0;
     float gapBetweenPipes = 100.0;
-    float boundingColor[3] = { 0 };
+    float boundingColorRGB[3] = { 0 };
 
     Text text;
     if (!text.loadAssets())
@@ -58,7 +58,7 @@ void Game::run()
         ImGui::SFML::Update(window, delta.restart());
 
         if (showSettings)
-            settings(showSettings, moveSpeed, background, gapBetweenPipes, pipeColor, showBoundingBoxes, boundingColor);
+            settings(showSettings, moveSpeed, background, gapBetweenPipes, pipeColor, showBoundingBoxes, boundingColorRGB);
 
         /* Move pipes and ground in sync */
         world.moveGround();
@@ -76,7 +76,7 @@ void Game::run()
             p->set_moveSpeed(moveSpeed);
             p->changeColor(pipeColor);
             p->set_gapBetweenPipes(gapBetweenPipes);
-            p->setBoundingColor(boundingColor);
+            p->setBoundingColor(boundingColorRGB);
         }
 
         window.clear();
@@ -113,7 +113,7 @@ void Game::run()
 
 }
 
-void Game::settings(bool& showSettings, int& moveSpeed, int& background, float& gapBetweenPipes, int& pipeColor, bool& showBoundingBoxes, float boundingColor[])
+void Game::settings(bool& showSettings, int& moveSpeed, int& background, float& gapBetweenPipes, int& pipeColor, bool& showBoundingBoxes, float RGB[])
 {
     ImGui::Begin("Settings", &showSettings);
 
@@ -125,11 +125,11 @@ void Game::settings(bool& showSettings, int& moveSpeed, int& background, float& 
 
     ImGui::Checkbox("Show Bounding Boxes", &showBoundingBoxes);
     ImGui::SameLine();
-    ImGui::ColorEdit3("Box Color", boundingColor);
+    ImGui::ColorEdit3("Box Color", RGB);
 
     ImGui::NewLine();
 
-    if (ImGui::CollapsingHeader("Update Assets"))
+    if (ImGui::CollapsingHeader("Assets"))
     {
         ImGui::RadioButton("Day Theme", &background, 0);
         ImGui::SameLine();
