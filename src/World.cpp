@@ -20,7 +20,7 @@ bool World::loadAssets()
 void World::moveGround()
 {
 	/*
-	* Move the two ground sprites to the left side of the screen
+	* Move the two ground sprites towards the left side of the screen
 	*/
 	m_ground.first.setPosition(m_ground.first.getPosition().x - m_moveSpeed,m_ground.first.getPosition().y);
 	m_ground.second.setPosition(sf::Vector2f(m_ground.second.getPosition().x - m_moveSpeed,m_ground.second.getPosition().y));
