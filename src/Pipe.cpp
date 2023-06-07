@@ -57,7 +57,7 @@ void Pipe::calculateRandomYPos(float x)
 	/* Generate random number */
 	std::random_device dev;
 	std::mt19937 rng(dev());
-	std::uniform_int_distribution<std::mt19937::result_type> dist6(10, SCREEN_HEIGHT / 2);
+	std::uniform_int_distribution<std::mt19937::result_type> dist6(20, SCREEN_HEIGHT / 2);
 
 	float yPos = dist6(rng);
 
