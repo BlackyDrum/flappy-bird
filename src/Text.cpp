@@ -51,7 +51,7 @@ void Text::setup()
 
 	m_score.setOrigin(m_score.getLocalBounds().left + m_score.getLocalBounds().width / 2.0f,
 		m_score.getLocalBounds().top + m_score.getLocalBounds().height / 2.0f);
-	m_score.setPosition(sf::Vector2f(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 4.0f));
+	m_score.setPosition(sf::Vector2f(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 6.0f));
 
 	i_score = 0;
 }
