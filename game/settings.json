@@ -1,15 +1,15 @@
 {
    "Assets" : {
-      "bird" : 1,
-      "pipe" : 1,
-      "theme" : 1,
-      "volume" : 51
+      "bird" : 0,
+      "pipe" : 0,
+      "theme" : 0,
+      "volume" : 100
    },
    "Settings" : {
-      "gap" : 90.198997497558594,
+      "gap" : 150.0,
       "gravity" : 0.25,
-      "scoreMultiplier" : 3,
-      "showBoundingBox" : true,
+      "scoreMultiplier" : 1,
+      "showBoundingBox" : false,
       "speed" : 3
    }
 }
