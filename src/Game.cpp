@@ -5,10 +5,6 @@ void Game::run()
     sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Flappy Bird", sf::Style::Close);
     window.setFramerateLimit(60);
 
-#if defined(NDEBUG) && defined(_WIN32)
-    ShowWindow(GetConsoleWindow(), SW_HIDE);
-#endif
-
     ImGui::SFML::Init(window);
 
     sf::Clock delta;
@@ -16,7 +12,7 @@ void Game::run()
     bool showSettings = false, showBoundingBoxes = false, gameStart = false, gamePause = false;
     int background = 0, moveSpeed = 1, pipeColor = 0;
     float gapBetweenPipes = 100.0;
-    float boundingColorRGB[3] = { 0 };
+    float boundingColorRGB[3] = { sf::Color::Red.r / 255, 0, 0 };
 
     Text text;
     if (!text.loadAssets())
@@ -62,7 +58,6 @@ void Game::run()
         if (showSettings)
             settings(showSettings, moveSpeed, background, gapBetweenPipes, pipeColor, showBoundingBoxes, boundingColorRGB);
 
-        /* Move pipes and ground in sync */
         if (!gamePause)
         {
             world.moveGround();

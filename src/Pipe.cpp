@@ -8,8 +8,6 @@ bool Pipe::loadAssets()
 	m_pipe.first.setTexture(m_pipeGreenTexture);
 	m_pipe.second.setTexture(m_pipeGreenTexture);
 
-	m_boundingColor = sf::Color::Red;
-
 	m_boundingBox.first.setFillColor(sf::Color::Transparent);
 	m_boundingBox.first.setOutlineColor(m_boundingColor);
 	m_boundingBox.first.setOutlineThickness(3);
