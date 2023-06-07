@@ -14,7 +14,7 @@ bool Bird::loadAssets()
 
 void Bird::setup()
 {
-	m_bird.setPosition(SCREEN_WIDTH / 4, SCREEN_HEIGHT / 2);
+	m_bird.setPosition(SCREEN_WIDTH / 4, SCREEN_HEIGHT / 3);
 
 	m_bird.setScale(1.2, 1.2);
 
