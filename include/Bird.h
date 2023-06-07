@@ -40,7 +40,7 @@ private:
 
 	sf::Clock m_animationClock;
 
-	enum CurrentFlap { mid, up, down };
+	enum CurrentFlap { mid, up };
 	CurrentFlap m_currentFlap;
 
 	float m_gravity, m_gravityForce, m_jumpForce;
