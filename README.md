@@ -1,31 +1,33 @@
-# Flappy Bird Clone in SFML!
-This is a C++ project that implements a clone of the popular game Flappy Bird using the Simple and Fast Multimedia Library (SFML).
+# Flappy Bird Clone in SFML + ImGui!
+This is a C++ project that implements a clone of the popular game Flappy Bird using SFML.<br>
+You have the option to modify some of the game options/assets such as flying speed, gravity, skins, etc. with ImGui.
 
-## Features
--   Classic Flappy Bird gameplay with SFML's collision detection.
--   Simple and intuitive controls using the spacebar to make the bird jump.
--   Randomly generated pipes for endless gameplay.
--   Score tracking and display of the current score.
--   Game over detection with the option to restart the game.
+## Controls
+- ``Space`` - Add force to the bird
+- ``Enter`` - Open settings
+- ``Escape`` - Pause
 
 ## Prerequisites
 Before running the Flappy Bird clone, make sure you have the following installed on your system:
--   SFML library: You can download SFML from the official website ([https://www.sfml-dev.org/](https://www.sfml-dev.org/)) and follow the installation instructions for your operating system, for example on Debian:
+-   SFML library: You can download SFML from the official website ([https://www.sfml-dev.org/](https://www.sfml-dev.org/)) and follow the installation instructions for your operating system, for example on Debian-based systems:
 ```
 $ sudo apt-get install libsfml-dev
 ```
-- OpenGL library: You can install it on Debian-based systems with the following command:
+- OpenGL library: You can install the library with the following command:
 ```
 $ sudo apt-get install libglu1-mesa-dev mesa-common-dev
 ```
-- A C++ compiler, such as GCC or Clang
+- A C++ compiler, e.g. ``GCC``
+```
+$ sudo apt-get install build-essential
+```
 - On Windows, make sure to set the ``SFML_PATH`` variable to the root path of the SFML library:
 ```
 set SFML_PATH=C:\path\to\sfml
 ```
  
 ## Build using Makefile
-If you have GNU Make installed on your system, you can use the included Makefile to build the project.
+If you have ``GNU Make`` installed on your system, you can use the included ``Makefile`` to build the project.
 
 1. Clone the repository to your local machine:
 ```
@@ -35,15 +37,11 @@ $ git clone https://github.com/BlackyDrum/flappy-bird.git
 ```
 $ cd flappy-bird
 ```
-3. Use make to build the project. The executable ``flappy-bird`` will be generated in the bin directory.
+3. Use make to build the project. The executable ``flappy-bird`` will be generated in the root directory.
 ```
 $ make
 ```
-4. Change to the bin directory:
-```
-$ cd bin
-```
-5. Run the binary file (or double click the .exe on Windows):
+4. Run the binary file (or double click the .exe on Windows):
 ```
 $ ./flappy-bird
 ```

@@ -3,9 +3,7 @@
 *.suo
 *.sdf
 *.opensdf
-*.vcxproj
 *.vcxproj.user
-*.vcxproj.filters
 
 # C++ object files and executables
 *.obj
@@ -87,9 +85,6 @@ packages/
 *.snupkg
 *.props
 *.targets
-
-# Include
-!bin/*
 
 # ImGui
 /*.ini
