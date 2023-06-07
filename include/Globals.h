@@ -4,8 +4,6 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 
-#include <json/json.h>
-
 #include <string>
 #include <iostream>
 #include <vector>
@@ -14,7 +12,6 @@
 #include <random>
 #include <memory.h>
 #include <cmath>
-#include <fstream>
 
 const unsigned int SCREEN_WIDTH = 864, SCREEN_HEIGHT = 510;
 
