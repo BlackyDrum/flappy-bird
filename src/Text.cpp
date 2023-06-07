@@ -2,7 +2,7 @@
 
 bool Text::loadAssets()
 {
-	if (!m_font.loadFromFile("assets/fonts/FlappyBirdy.ttf") || !m_scoreFont.loadFromFile("assets/fonts/04B_19__.ttf"))
+	if (!m_font.loadFromFile("assets/fonts/FlappyBirdy.ttf") || !m_scoreFont.loadFromFile("assets/fonts/04B_19__.TTF"))
 		return false;
 
 	return true;
