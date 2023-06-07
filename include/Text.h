@@ -6,7 +6,7 @@
 class Text {
 public:
 	Text()
-		: i_score{ 0 } {}
+		: i_score{ 0 }, m_scoreMultiplier{ 1 } {}
 
 	bool loadAssets();
 
@@ -19,6 +19,8 @@ public:
 	sf::Text get_lost() const { return m_lost; }
 	sf::Text get_restartInfo() const { return m_restartInfo; }
 	sf::Text get_score() const { return m_score; }
+
+	void set_scoreMultiplier(int multiplier) { m_scoreMultiplier = multiplier; }
 private:
 	sf::Font m_font;
 	sf::Font m_scoreFont;
@@ -30,6 +32,8 @@ private:
 	sf::Text m_score;
 
 	int i_score;
+
+	int m_scoreMultiplier;
 };
 
 #endif

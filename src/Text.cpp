@@ -20,14 +20,13 @@ void Text::setup()
 
 	m_lost.setFont(m_font);
 	m_lost.setString("You Lost");
-	m_lost.setCharacterSize(100);
-	sf::Color orange(255,165,0);
-	m_lost.setFillColor(orange);
+	m_lost.setCharacterSize(150);
+	m_lost.setFillColor(sf::Color::Black);
 
 	m_restartInfo.setFont(m_font);
 	m_restartInfo.setString("Press R to restart");
 	m_restartInfo.setCharacterSize(75);
-	m_restartInfo.setFillColor(orange);
+	m_restartInfo.setFillColor(sf::Color::Black);
 
 	m_score.setFont(m_scoreFont);
 	m_score.setString("0");
@@ -61,7 +60,7 @@ bool Text::incrementScore(sf::Sprite player, std::pair<sf::Sprite, sf::Sprite> p
 {
 	if (pipe.first.getPosition().x < player.getPosition().x && canAddToScore)
 	{
-		m_score.setString(std::to_string(++i_score));
+		m_score.setString(std::to_string(++i_score * m_scoreMultiplier));
 		return true;
 	}
 	

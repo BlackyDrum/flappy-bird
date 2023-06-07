@@ -10,16 +10,21 @@ void Game::run()
     sf::Clock delta;
 
     bool showSettings = false, showBoundingBoxes = false, gameStart = false, gamePause = false, gameLost = false;
-    int background = 0, moveSpeed = 3, pipeColor = 0, birdColor = 0;
+    int background = 0, moveSpeed = 3, pipeColor = 0, birdColor = 0, scoreMultiplier = 1;
     float gapBetweenPipes = 150.0;
     float boundingColorRGB[3] = { sf::Color::Red.r / 255, 0, 0 };
-
+    int volume = 100;
+    bool invincible = false;
     float gravity = 0.25;
 
     Text text;
     if (!text.loadAssets())
         return;
     text.setup();
+
+    Sound sounds;
+    if (!sounds.loadAssets())
+        return;
 
     Collision collision;
 
@@ -60,15 +65,20 @@ void Game::run()
             {
                 if (event.key.code == sf::Keyboard::Space && !gameStart)
                     gameStart = true;
-                else if (event.key.code == sf::Keyboard::Escape)
+                else if (event.key.code == sf::Keyboard::Escape && gameStart && !gameLost)
                     gamePause = !gamePause;
-                else if (event.key.code == sf::Keyboard::Space && gameStart)
+                else if (event.key.code == sf::Keyboard::Space && gameStart && !gameLost && !gamePause)
+                {
                     player.addForce();
+                    sounds.playWing();
+                }
+                    
                 else if (event.key.code == sf::Keyboard::R && gameLost)
                 {
                     gameLost = false;
                     world.setup();
                     text.setup();
+                    sounds.setup();
                     player.setup();
                     for (auto& p : pipes)
                         p->setup();
@@ -79,7 +89,7 @@ void Game::run()
         ImGui::SFML::Update(window, delta.restart());
 
         if (showSettings)
-            settings(showSettings, moveSpeed, background, gapBetweenPipes, pipeColor, showBoundingBoxes, boundingColorRGB, birdColor, gravity);
+            settings(showSettings, moveSpeed, background, gapBetweenPipes, pipeColor, showBoundingBoxes, boundingColorRGB, birdColor, gravity, volume, invincible, scoreMultiplier);
 
         if (!gamePause && !gameLost)
         {
@@ -107,12 +117,20 @@ void Game::run()
             }
         }
 
-        if (collision.checkGroundCollision(player.get_bird(), world.get_ground()) || collision.checkTopCollision(player.get_bird()) && gameStart)
+        if ((collision.checkGroundCollision(player.get_bird(), world.get_ground()) || collision.checkTopCollision(player.get_bird()) && gameStart) && !invincible)
+        {
             gameLost = true;
+            sounds.playHit();
+        }
+            
         for (auto& p : pipes)
         {
-            if (collision.checkPipeCollision(player.get_bird(), p->get_Pipe()))
+            if (collision.checkPipeCollision(player.get_bird(), p->get_Pipe()) && !invincible)
+            {
                 gameLost = true;
+                sounds.playHit();
+            }
+                
         }
 
         player.setBoundingColor(boundingColorRGB);
@@ -120,8 +138,12 @@ void Game::run()
 
         player.set_gravity(gravity);
 
-        if (gameStart && !gameLost)
+        if (gameStart && !gameLost && !gamePause)
             player.gravity();
+
+        sounds.set_volume(volume);
+
+        text.set_scoreMultiplier(scoreMultiplier);
 
         window.clear();
 
@@ -171,7 +193,7 @@ void Game::run()
 
 }
 
-void Game::settings(bool& showSettings, int& moveSpeed, int& background, float& gapBetweenPipes, int& pipeColor, bool& showBoundingBoxes, float RGB[], int& birdColor, float& gravity)
+void Game::settings(bool& showSettings, int& moveSpeed, int& background, float& gapBetweenPipes, int& pipeColor, bool& showBoundingBoxes, float RGB[], int& birdColor, float& gravity, int& volume, bool& invincible, int& scoreMultiplier)
 {
     ImGui::Begin("Settings", &showSettings);
 
@@ -181,11 +203,17 @@ void Game::settings(bool& showSettings, int& moveSpeed, int& background, float& 
 
     ImGui::SliderFloat("Gravity", &gravity, 0.01, 1);
 
+    ImGui::SliderInt("Score Multiplier", &scoreMultiplier, 1, 10);
+
     ImGui::NewLine();
 
     ImGui::Checkbox("Show Bounding Boxes", &showBoundingBoxes);
     ImGui::SameLine();
     ImGui::ColorEdit3("Box Color", RGB);
+
+    ImGui::NewLine();
+
+    ImGui::Checkbox("Invincible", &invincible);
 
     ImGui::NewLine();
 
@@ -204,6 +232,10 @@ void Game::settings(bool& showSettings, int& moveSpeed, int& background, float& 
         ImGui::RadioButton("Blue Bird", &birdColor, 1);
         ImGui::SameLine();
         ImGui::RadioButton("Red Bird", &birdColor, 2);
+
+        ImGui::NewLine();
+
+        ImGui::SliderInt("Volume", &volume, 0, 100);
     }
 
     ImGui::End();
