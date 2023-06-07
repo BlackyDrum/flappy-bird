@@ -7,13 +7,14 @@
 #include "World.h"
 #include "Pipe.h"
 #include "Text.h"
+#include "Bird.h"
 
 class Game
 {
 public:
 	static void run();
 
-	static void settings(bool& showSettings, int& moveSpeed, int& background, float& gapBetweenPipes, int& pipeColor, bool& showBoundingBoxes, float RGB[]);
+	static void settings(bool& showSettings, int& moveSpeed, int& background, float& gapBetweenPipes, int& pipeColor, bool& showBoundingBoxes, float RGB[], int& birdColor, float& gravity);
 private:
 	Game() = default;
 };

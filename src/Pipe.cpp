@@ -62,6 +62,7 @@ void Pipe::calculateRandomYPos(float x)
 
 	/*
 	* Both Pipes use the same y-position, being seperated by a little offset
+	* This is working, because one pipe is mirrored
 	*/
 	m_pipe.first.setPosition(x, yPos);
 	m_pipe.second.setPosition(x, yPos + m_gapBetweenPipes);

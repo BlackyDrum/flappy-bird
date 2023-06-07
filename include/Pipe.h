@@ -28,6 +28,8 @@ private:
 	sf::Texture m_pipeGreenTexture;
 	sf::Texture m_pipeRedTexture;
 
+	sf::Color m_boundingColor;
+
 	/*
 	* One Pipe object consists of two sprites, a lower and an upper pipe.
 	*/
@@ -35,8 +37,6 @@ private:
 	std::pair<sf::RectangleShape, sf::RectangleShape> m_boundingBox;
 
 	float m_Xpos;
-
-	sf::Color m_boundingColor;
 
 	float m_gapBetweenPipes;
 

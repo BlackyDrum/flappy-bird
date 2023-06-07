@@ -10,9 +10,11 @@ void Game::run()
     sf::Clock delta;
 
     bool showSettings = false, showBoundingBoxes = false, gameStart = false, gamePause = false;
-    int background = 0, moveSpeed = 1, pipeColor = 0;
-    float gapBetweenPipes = 100.0;
+    int background = 0, moveSpeed = 3, pipeColor = 0, birdColor = 0;
+    float gapBetweenPipes = 150.0;
     float boundingColorRGB[3] = { sf::Color::Red.r / 255, 0, 0 };
+
+    float gravity = 0.25;
 
     Text text;
     if (!text.loadAssets())
@@ -34,6 +36,11 @@ void Game::run()
         pipes.push_back(p);
     }
 
+    Bird player{ 0.1,gravity,5 };
+    if (!player.loadAssets())
+        return;
+    player.setup();
+
     while (window.isOpen())
     {
         sf::Event event;
@@ -49,17 +56,19 @@ void Game::run()
                 showSettings = !showSettings;
             else if (event.type == sf::Event::KeyPressed)
             {
-                if (event.key.code == sf::Keyboard::Space)
+                if (event.key.code == sf::Keyboard::Space && !gameStart)
                     gameStart = true;
                 else if (event.key.code == sf::Keyboard::Escape)
                     gamePause = !gamePause;
+                else if (event.key.code == sf::Keyboard::Space && gameStart)
+                    player.addForce();
             }
         }
 
         ImGui::SFML::Update(window, delta.restart());
 
         if (showSettings)
-            settings(showSettings, moveSpeed, background, gapBetweenPipes, pipeColor, showBoundingBoxes, boundingColorRGB);
+            settings(showSettings, moveSpeed, background, gapBetweenPipes, pipeColor, showBoundingBoxes, boundingColorRGB, birdColor, gravity);
 
         if (!gamePause)
         {
@@ -82,6 +91,14 @@ void Game::run()
             p->setBoundingColor(boundingColorRGB);
         }
 
+        player.setBoundingColor(boundingColorRGB);
+        player.changeColor(birdColor);
+
+        player.set_gravity(gravity);
+
+        if (gameStart)
+            player.gravity();
+
         window.clear();
 
         window.draw(world.get_background());
@@ -95,11 +112,15 @@ void Game::run()
             {
                 window.draw(p->get_BoundingBox().first);
                 window.draw(p->get_BoundingBox().second);
+
+                window.draw(player.get_boundingBox());
             }
         }
             
         window.draw(world.get_ground().first);
         window.draw(world.get_ground().second);
+
+        window.draw(player.get_bird());
 
         if (!gameStart)
             window.draw(text.get_start());
@@ -118,13 +139,15 @@ void Game::run()
 
 }
 
-void Game::settings(bool& showSettings, int& moveSpeed, int& background, float& gapBetweenPipes, int& pipeColor, bool& showBoundingBoxes, float RGB[])
+void Game::settings(bool& showSettings, int& moveSpeed, int& background, float& gapBetweenPipes, int& pipeColor, bool& showBoundingBoxes, float RGB[], int& birdColor, float& gravity)
 {
     ImGui::Begin("Settings", &showSettings);
 
     ImGui::SliderInt("Flying Speed", &moveSpeed, 1, 7);
 
     ImGui::SliderFloat("Gap between Pipes", &gapBetweenPipes, 60.0, 140.0);
+
+    ImGui::SliderFloat("Gravity", &gravity, 0.01, 1);
 
     ImGui::NewLine();
 
@@ -143,6 +166,12 @@ void Game::settings(bool& showSettings, int& moveSpeed, int& background, float& 
         ImGui::RadioButton("Green Pipe", &pipeColor, 0);
         ImGui::SameLine();
         ImGui::RadioButton("Red Pipe", &pipeColor, 1);
+
+        ImGui::RadioButton("Yellow Bird", &birdColor, 0);
+        ImGui::SameLine();
+        ImGui::RadioButton("Blue Bird", &birdColor, 1);
+        ImGui::SameLine();
+        ImGui::RadioButton("Red Bird", &birdColor, 2);
     }
 
     ImGui::End();
