@@ -17,8 +17,6 @@ void Game::run()
     bool invincible = false;
     float gravity = 0.25;
 
-    deserialize(moveSpeed, gapBetweenPipes, gravity, scoreMultiplier, showBoundingBoxes, background, pipeColor, birdColor, volume);
-
     Text text;
     if (!text.loadAssets())
         return;
@@ -53,8 +51,6 @@ void Game::run()
     while (window.isOpen())
     {
         sf::Event event;
-
-        serialize(moveSpeed, gapBetweenPipes, gravity, scoreMultiplier, showBoundingBoxes, background, pipeColor, birdColor, volume);
 
         while (window.pollEvent(event))
         {
@@ -243,52 +239,4 @@ void Game::settings(bool& showSettings, int& moveSpeed, int& background, float& 
     }
 
     ImGui::End();
-}
-
-void Game::serialize(int moveSpeed, float gap, float gravity, int scoreMultiplier, bool box, int theme, int pipe, int bird, int volume)
-{
-    std::ofstream settings("game/settings.json");
-
-    Json::StyledWriter writer;
-    
-    Json::Value assets, data, root;
-    data["speed"] = moveSpeed;
-    data["gap"] = gap;
-    data["gravity"] = gravity;
-    data["scoreMultiplier"] = scoreMultiplier;
-    data["showBoundingBox"] = box;
-
-    assets["theme"] = theme;
-    assets["pipe"] = pipe;
-    assets["bird"] = bird;
-    assets["volume"] = volume;
-    
-    root["Settings"] = data;
-    root["Assets"] = assets;
-
-    settings << writer.write(root);
-
-    settings.close();
-}
-
-void Game::deserialize(int& moveSpeed, float& gap, float& gravity, int& scoreMultiplier, bool& box, int& theme, int& pipe, int& bird, int& volume)
-{
-    std::ifstream settings("game/settings.json");
-
-    Json::Reader reader;
-
-    Json::Value completeJsonData;
-   
-    reader.parse(settings, completeJsonData);
-
-    moveSpeed = completeJsonData["Settings"]["speed"].asInt();
-    gap = completeJsonData["Settings"]["gap"].asFloat();
-    gravity = completeJsonData["Settings"]["gravity"].asFloat();
-    scoreMultiplier = completeJsonData["Settings"]["scoreMultiplier"].asInt();
-    box = completeJsonData["Settings"]["showBoundingBox"].asBool();
-
-    theme = completeJsonData["Assets"]["theme"].asInt();
-    pipe = completeJsonData["Assets"]["pipe"].asInt();
-    bird = completeJsonData["Assets"]["bird"].asInt();
-    volume = completeJsonData["Assets"]["volume"].asInt();
 }
