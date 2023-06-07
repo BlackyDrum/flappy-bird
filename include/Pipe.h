@@ -11,6 +11,8 @@ public:
 
 	bool loadAssets();
 
+	void setup();
+
 	void movePipes();
 
 	void changeColor(int color);
@@ -27,7 +29,7 @@ private:
 	sf::Texture m_pipeRedTexture;
 
 	/*
-	* One Pipe object consists of two sprites, a lower and an upper pipe. The upper sprite is mirrored.
+	* One Pipe object consists of two sprites, a lower and an upper pipe.
 	*/
 	std::pair<sf::Sprite, sf::Sprite> m_pipe;
 	std::pair<sf::RectangleShape, sf::RectangleShape> m_boundingBox;
@@ -37,6 +39,7 @@ private:
 	sf::Color m_boundingColor;
 
 	float m_gapBetweenPipes;
+
 	int m_moveSpeed;
 
 	void calculateRandomYPos(float x);

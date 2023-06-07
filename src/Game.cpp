@@ -17,10 +17,12 @@ void Game::run()
     Text text;
     if (!text.loadAssets())
         return;
+    text.setup();
 
     World world{ moveSpeed };
     if (!world.loadAssets())
         return;
+    world.setup();
 
     std::vector<Pipe*> pipes;
     for (int i = 1; i < 4; i++)
@@ -28,6 +30,7 @@ void Game::run()
         Pipe* p = new Pipe{ gapBetweenPipes,sf::Vector2f(i * 300 + SCREEN_WIDTH * 0.66,0), moveSpeed };
         if (!p->loadAssets())
             return;
+        p->setup();
         pipes.push_back(p);
     }
 

@@ -11,6 +11,8 @@ public:
 
 	bool loadAssets();
 
+	void setup();
+
 	void changeBackground(int);
 
 	void moveGround();

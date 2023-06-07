@@ -11,10 +11,13 @@ bool World::loadAssets()
 	m_ground.first.setTexture(m_groundTexture);
 	m_ground.second.setTexture(m_groundTexture);
 
+	return true;
+}
+
+void World::setup()
+{
 	m_ground.first.setPosition(0, SCREEN_HEIGHT - m_groundTexture.getSize().y);
 	m_ground.second.setPosition(SCREEN_WIDTH, SCREEN_HEIGHT - m_groundTexture.getSize().y);
-
-	return true;
 }
 
 void World::moveGround()

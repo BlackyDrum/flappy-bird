@@ -8,6 +8,11 @@ bool Pipe::loadAssets()
 	m_pipe.first.setTexture(m_pipeGreenTexture);
 	m_pipe.second.setTexture(m_pipeGreenTexture);
 
+	return true;
+}
+
+void Pipe::setup()
+{
 	m_boundingBox.first.setFillColor(sf::Color::Transparent);
 	m_boundingBox.first.setOutlineColor(m_boundingColor);
 	m_boundingBox.first.setOutlineThickness(3);
@@ -23,8 +28,6 @@ bool Pipe::loadAssets()
 	/* One pipe being mirrored */
 	m_pipe.first.setScale(1.0, -1.0);
 	m_boundingBox.first.setScale(1.0, -1.0);
-
-	return true;
 }
 
 void Pipe::movePipes()
@@ -37,7 +40,7 @@ void Pipe::movePipes()
 
 	/*
 	* When both pipes reach the left end of the screen, they are both immediately teleported back to the right side of the screen.
-	* Additionally, a new y-position is calculated for the pipes
+	* Additionally, a new y-position is calculated for the pipes for game variation
 	*/
 	if (m_pipe.first.getPosition().x + m_pipe.first.getTexture()->getSize().x <= 0)
 	{

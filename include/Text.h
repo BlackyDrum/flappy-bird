@@ -9,6 +9,8 @@ public:
 
 	bool loadAssets();
 
+	void setup();
+
 	sf::Text get_start() const { return m_start; }
 	sf::Text get_pause() const { return m_pause; }
 private:
