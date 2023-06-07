@@ -100,9 +100,14 @@ void Game::run()
             p->changeColor(pipeColor);
             p->set_gapBetweenPipes(gapBetweenPipes);
             p->setBoundingColor(boundingColorRGB);
+
+            if (text.incrementScore(player.get_bird(), p->get_Pipe(), p->get_canAddToScore()))
+            {
+                p->set_canAddtoScore(false);
+            }
         }
 
-        if (collision.checkGroundCollision(player.get_bird(), world.get_ground()))
+        if (collision.checkGroundCollision(player.get_bird(), world.get_ground()) || collision.checkTopCollision(player.get_bird()) && gameStart)
             gameLost = true;
         for (auto& p : pipes)
         {
@@ -135,6 +140,8 @@ void Game::run()
                 window.draw(player.get_boundingBox());
             }
         }
+
+        window.draw(text.get_score());
             
         window.draw(world.get_ground().first);
         window.draw(world.get_ground().second);

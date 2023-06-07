@@ -47,6 +47,8 @@ void Pipe::movePipes()
 		m_pipe.first.setPosition(SCREEN_WIDTH, m_pipe.first.getPosition().y);
 		m_pipe.second.setPosition(SCREEN_WIDTH, m_pipe.second.getPosition().y);
 
+		m_canAddToScore = true;
+
 		calculateRandomYPos(SCREEN_WIDTH);
 	}		
 }

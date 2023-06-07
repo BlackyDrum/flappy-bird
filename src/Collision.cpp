@@ -15,3 +15,11 @@ bool Collision::checkPipeCollision(sf::Sprite player, std::pair<sf::Sprite, sf::
 
 	return false;
 }
+
+bool Collision::checkTopCollision(sf::Sprite player)
+{
+	if (player.getPosition().y < 0)
+		return true;
+
+	return false;
+}

@@ -11,8 +11,8 @@ public:
 	bool checkGroundCollision(sf::Sprite player, std::pair<sf::Sprite, sf::Sprite> ground);
 
 	bool checkPipeCollision(sf::Sprite player, std::pair<sf::Sprite, sf::Sprite> ground);
-private:
 
+	bool checkTopCollision(sf::Sprite player);
 };
 
 #endif

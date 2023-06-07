@@ -7,7 +7,7 @@ class Pipe
 {
 public:
 	Pipe(float gapBetweenPipes, float pos, int moveSpeed)
-		: m_gapBetweenPipes{ gapBetweenPipes }, m_Xpos{ pos }, m_moveSpeed{ moveSpeed } {}
+		: m_gapBetweenPipes{ gapBetweenPipes }, m_Xpos{ pos }, m_moveSpeed{ moveSpeed }, m_canAddToScore{ true } {}
 
 	bool loadAssets();
 
@@ -21,9 +21,11 @@ public:
 
 	std::pair<sf::Sprite, sf::Sprite> get_Pipe() const { return m_pipe; }
 	std::pair<sf::RectangleShape, sf::RectangleShape> get_BoundingBox() const { return m_boundingBox; }
+	bool get_canAddToScore() const { return m_canAddToScore; }
 
 	void set_moveSpeed(int moveSpeed) { m_moveSpeed = moveSpeed; }
 	void set_gapBetweenPipes(float gap) { m_gapBetweenPipes = gap; }
+	void set_canAddtoScore(bool add) { m_canAddToScore = add; }
 private:
 	sf::Texture m_pipeGreenTexture;
 	sf::Texture m_pipeRedTexture;
@@ -41,6 +43,8 @@ private:
 	float m_gapBetweenPipes;
 
 	int m_moveSpeed;
+
+	bool m_canAddToScore;
 
 	void calculateRandomYPos(float x);
 };
