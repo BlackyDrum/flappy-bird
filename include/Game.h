@@ -8,6 +8,7 @@
 #include "Pipe.h"
 #include "Text.h"
 #include "Bird.h"
+#include "Collision.h"
 
 class Game
 {

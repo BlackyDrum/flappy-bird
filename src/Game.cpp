@@ -9,7 +9,7 @@ void Game::run()
 
     sf::Clock delta;
 
-    bool showSettings = false, showBoundingBoxes = false, gameStart = false, gamePause = false;
+    bool showSettings = false, showBoundingBoxes = false, gameStart = false, gamePause = false, gameLost = false;
     int background = 0, moveSpeed = 3, pipeColor = 0, birdColor = 0;
     float gapBetweenPipes = 150.0;
     float boundingColorRGB[3] = { sf::Color::Red.r / 255, 0, 0 };
@@ -20,6 +20,8 @@ void Game::run()
     if (!text.loadAssets())
         return;
     text.setup();
+
+    Collision collision;
 
     World world{ moveSpeed };
     if (!world.loadAssets())
@@ -62,6 +64,15 @@ void Game::run()
                     gamePause = !gamePause;
                 else if (event.key.code == sf::Keyboard::Space && gameStart)
                     player.addForce();
+                else if (event.key.code == sf::Keyboard::R && gameLost)
+                {
+                    gameLost = false;
+                    world.setup();
+                    text.setup();
+                    player.setup();
+                    for (auto& p : pipes)
+                        p->setup();
+                }
             }
         }
 
@@ -70,7 +81,7 @@ void Game::run()
         if (showSettings)
             settings(showSettings, moveSpeed, background, gapBetweenPipes, pipeColor, showBoundingBoxes, boundingColorRGB, birdColor, gravity);
 
-        if (!gamePause)
+        if (!gamePause && !gameLost)
         {
             world.moveGround();
             if (gameStart)
@@ -91,12 +102,20 @@ void Game::run()
             p->setBoundingColor(boundingColorRGB);
         }
 
+        if (collision.checkGroundCollision(player.get_bird(), world.get_ground()))
+            gameLost = true;
+        for (auto& p : pipes)
+        {
+            if (collision.checkPipeCollision(player.get_bird(), p->get_Pipe()))
+                gameLost = true;
+        }
+
         player.setBoundingColor(boundingColorRGB);
         player.changeColor(birdColor);
 
         player.set_gravity(gravity);
 
-        if (gameStart)
+        if (gameStart && !gameLost)
             player.gravity();
 
         window.clear();
@@ -124,8 +143,14 @@ void Game::run()
 
         if (!gameStart)
             window.draw(text.get_start());
-        if (gameStart && gamePause)
+        if (gameStart && gamePause && !gameLost)
             window.draw(text.get_pause());
+        if (gameLost && !gamePause)
+        {
+            window.draw(text.get_lost());
+            window.draw(text.get_restartInfo());
+        }
+            
 
         ImGui::SFML::Render(window); // Needs to be last thing to be drawn
 

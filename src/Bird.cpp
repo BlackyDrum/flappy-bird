@@ -22,6 +22,10 @@ void Bird::setup()
 	m_boundingBox.setOutlineThickness(3);
 	m_boundingBox.setSize(sf::Vector2f(m_bird.getTexture()->getSize().x, m_bird.getTexture()->getSize().y));
 	m_boundingBox.setPosition(m_bird.getPosition());
+
+	m_gravity = c_gravityForce;
+	m_jumpForce = c_jumpForce;
+	m_gravityForce = c_gravityForce;
 }
 
 void Bird::gravity()

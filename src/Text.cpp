@@ -18,6 +18,17 @@ void Text::setup()
 	m_pause.setString("Game Paused");
 	m_pause.setCharacterSize(100);
 
+	m_lost.setFont(m_font);
+	m_lost.setString("You Lost");
+	m_lost.setCharacterSize(100);
+	sf::Color orange(255,165,0);
+	m_lost.setFillColor(orange);
+
+	m_restartInfo.setFont(m_font);
+	m_restartInfo.setString("Press R to restart");
+	m_restartInfo.setCharacterSize(75);
+	m_restartInfo.setFillColor(orange);
+
 	/* position the text in the middle of the screen */
 	m_start.setOrigin(m_start.getLocalBounds().left + m_start.getLocalBounds().width / 2.0f,
 		m_start.getLocalBounds().top + m_start.getLocalBounds().height / 2.0f);
@@ -26,4 +37,12 @@ void Text::setup()
 	m_pause.setOrigin(m_pause.getLocalBounds().left + m_pause.getLocalBounds().width / 2.0f,
 		m_pause.getLocalBounds().top + m_pause.getLocalBounds().height / 2.0f);
 	m_pause.setPosition(sf::Vector2f(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f));
+
+	m_lost.setOrigin(m_lost.getLocalBounds().left + m_lost.getLocalBounds().width / 2.0f,
+		m_lost.getLocalBounds().top + m_lost.getLocalBounds().height / 2.0f);
+	m_lost.setPosition(sf::Vector2f(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 3.0f));
+
+	m_restartInfo.setOrigin(m_restartInfo.getLocalBounds().left + m_restartInfo.getLocalBounds().width / 2.0f,
+		m_restartInfo.getLocalBounds().top + m_restartInfo.getLocalBounds().height / 2.0f);
+	m_restartInfo.setPosition(sf::Vector2f(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f));
 }
