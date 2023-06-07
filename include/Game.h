@@ -17,6 +17,10 @@ public:
 	static void run();
 
 	static void settings(bool& showSettings, int& moveSpeed, int& background, float& gapBetweenPipes, int& pipeColor, bool& showBoundingBoxes, float RGB[], int& birdColor, float& gravity, int& volume, bool &invincible, int& scoreMultiplier);
+
+	static void serialize(int, float, float, int, bool, int, int, int, int);
+
+	static void deserialize(int&, float&, float&, int&, bool&, int&, int&, int&, int&);
 private:
 	Game() = default;
 };
