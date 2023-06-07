@@ -99,8 +99,6 @@ void Game::run()
                 for (auto& p : pipes)
                     p->movePipes();
             }
-
-            player.animateFlap();
         }
 
         world.set_moveSpeed(moveSpeed);

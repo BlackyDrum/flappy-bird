@@ -79,6 +79,7 @@ void Bird::setBoundingColor(float RGB[])
 
 void Bird::changeColor(int color)
 {
+	/* This method additionally animates the flap */
 	if (m_animationClock.getElapsedTime().asMilliseconds() > 100)
 	{
 		m_animationClock.restart();
@@ -116,9 +117,4 @@ void Bird::changeColor(int color)
 			m_currentFlap = up;
 		}
 	}
-}
-
-void Bird::animateFlap()
-{
-
 }

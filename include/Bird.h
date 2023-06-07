@@ -22,8 +22,6 @@ public:
 
 	void setBoundingColor(float RGB[]);
 
-	void animateFlap();
-
 	sf::Sprite get_bird() const { return m_bird; }
 	sf::RectangleShape get_boundingBox() const { return m_boundingBox; }
 
