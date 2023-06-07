@@ -27,7 +27,7 @@ void Game::run()
     std::vector<Pipe*> pipes;
     for (int i = 1; i < 4; i++)
     {
-        Pipe* p = new Pipe{ gapBetweenPipes,sf::Vector2f(i * 300 + SCREEN_WIDTH * 0.66,0), moveSpeed };
+        Pipe* p = new Pipe{ gapBetweenPipes, float(i * 300 + SCREEN_WIDTH * 0.66), moveSpeed };
         if (!p->loadAssets())
             return;
         p->setup();

@@ -6,8 +6,8 @@
 class Pipe
 {
 public:
-	Pipe(float gapBetweenPipes, sf::Vector2f pos, int moveSpeed)
-		: m_gapBetweenPipes{ gapBetweenPipes }, m_pos{ pos }, m_moveSpeed{ moveSpeed } {}
+	Pipe(float gapBetweenPipes, float pos, int moveSpeed)
+		: m_gapBetweenPipes{ gapBetweenPipes }, m_Xpos{ pos }, m_moveSpeed{ moveSpeed } {}
 
 	bool loadAssets();
 
@@ -34,7 +34,7 @@ private:
 	std::pair<sf::Sprite, sf::Sprite> m_pipe;
 	std::pair<sf::RectangleShape, sf::RectangleShape> m_boundingBox;
 
-	sf::Vector2f m_pos;
+	float m_Xpos;
 
 	sf::Color m_boundingColor;
 

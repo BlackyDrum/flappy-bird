@@ -23,7 +23,7 @@ void Pipe::setup()
 	m_boundingBox.second.setOutlineThickness(3);
 	m_boundingBox.second.setSize(sf::Vector2f(m_pipe.second.getTexture()->getSize().x, m_pipe.second.getTexture()->getSize().y));
 
-	calculateRandomYPos(m_pos.x);
+	calculateRandomYPos(m_Xpos);
 
 	/* One pipe being mirrored */
 	m_pipe.first.setScale(1.0, -1.0);
@@ -48,8 +48,7 @@ void Pipe::movePipes()
 		m_pipe.second.setPosition(SCREEN_WIDTH, m_pipe.second.getPosition().y);
 
 		calculateRandomYPos(SCREEN_WIDTH);
-	}
-		
+	}		
 }
 
 void Pipe::calculateRandomYPos(float x)
