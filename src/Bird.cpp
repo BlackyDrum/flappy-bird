@@ -3,7 +3,8 @@
 bool Bird::loadAssets()
 {
 	if (!m_birdBlueTexture.loadFromFile("assets/textures/bluebird-midflap.png") || !m_birdRedTexture.loadFromFile("assets/textures/redbird-midflap.png") ||
-		!m_birdYellowTexture.loadFromFile("assets/textures/yellowbird-midflap.png"))
+		!m_birdYellowTexture.loadFromFile("assets/textures/yellowbird-midflap.png") || !m_birdYellowTextureUp.loadFromFile("assets/textures/yellowbird-upflap.png") ||
+		!m_birdBlueTextureUp.loadFromFile("assets/textures/bluebird-upflap.png") || !m_birdRedTextureUp.loadFromFile("assets/textures/redbird-upflap.png"))
 		return false;
 
 	m_bird.setTexture(m_birdYellowTexture);
@@ -78,15 +79,46 @@ void Bird::setBoundingColor(float RGB[])
 
 void Bird::changeColor(int color)
 {
-	switch (color)
+	if (m_animationClock.getElapsedTime().asMilliseconds() > 100)
 	{
-	case 0:
-		m_bird.setTexture(m_birdYellowTexture);
-		break;
-	case 1:
-		m_bird.setTexture(m_birdBlueTexture);
-		break;
-	case 2:
-		m_bird.setTexture(m_birdRedTexture);
+		m_animationClock.restart();
+
+		if (m_currentFlap == up)
+		{
+			switch(color)
+			{
+			case 0:
+				m_bird.setTexture(m_birdYellowTexture);
+				break;
+			case 1:
+				m_bird.setTexture(m_birdBlueTexture);
+				break;
+			case 2:
+				m_bird.setTexture(m_birdRedTexture);
+				break;
+			}
+			m_currentFlap = mid;
+		}	
+		else if (m_currentFlap == mid)
+		{
+			switch (color)
+			{
+			case 0:
+				m_bird.setTexture(m_birdYellowTextureUp);
+				break;
+			case 1:
+				m_bird.setTexture(m_birdBlueTextureUp);
+				break;
+			case 2:
+				m_bird.setTexture(m_birdRedTextureUp);
+				break;
+			}
+			m_currentFlap = up;
+		}
 	}
+}
+
+void Bird::animateFlap()
+{
+
 }
