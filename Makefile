@@ -10,10 +10,10 @@ IMGUI_OBJECTS=$(IMGUI_SOURCES:.cpp=.o)
 
 ifeq ($(OS),Windows_NT)
 	EXECUTABLE = flappy-bird.exe
-	LIBS = $(SFML_PATH)\lib\libsfml-graphics.a $(SFML_PATH)\lib\libsfml-window.a $(SFML_PATH)\lib\libsfml-system.a $(SFML_PATH)\lib\libsfml-audio.a -lopengl32
+	LIBS = $(SFML_PATH)\lib\libsfml-graphics.a $(SFML_PATH)\lib\libsfml-window.a $(SFML_PATH)\lib\libsfml-system.a $(SFML_PATH)\lib\libsfml-audio.a -lopengl32 -lpsapi
 else
 	EXECUTABLE = flappy-bird
-	LIBS = -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio -lGL
+	LIBS = -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio -lGL -lpsapi
 endif
 
 .PHONY: all clean
