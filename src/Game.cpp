@@ -347,16 +347,16 @@ void Game::settings(bool& showSettings, int& moveSpeed, int& background, float& 
         ImGui::PlotLines("", memoryHistory, MaxMemoryHistory, memoryIndex, "Memory Use", 0.0f, 100.0f, ImVec2(0, 80));
 #else
         // Get total memory
-        std::string totalMemory = std::to_string((std::stoi(readMeminfoValue("MemTotal")) / 1024));
-        ImGui::Text("Total Memory: %.2f MB", totalMemory);
+        std::string totalMemory = readMeminfoValue("MemTotal");
+        ImGui::Text("Total Memory %i MB", std::stoi(totalMemory) / 1024);
 
         // Get free memory
-        std::string freeMemory = std::to_string((std::stoi(readMeminfoValue("MemFree")) / 1024));
-        ImGui::Text("Free Memory: %.2f MB", freeMemory);
+        std::string freeMemory = readMeminfoValue("MemFree");
+        ImGui::Text("Free Memory %i MB", std::stoi(freeMemory) / 1024);
 
-        // Get used memory
-        std::string usedMemory = std::to_string((std::stoi(readMeminfoValue("MemAvailable")) / 1024));
-        ImGui::Text("Used Memory: %.2f MB", usedMemory);
+        // Get available memory
+        std::string usedMemory = readMeminfoValue("MemAvailable");
+        ImGui::Text("Available Memory %i MB", std::stoi(usedMemory) / 1024);
 
 #endif
     }
