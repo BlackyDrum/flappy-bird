@@ -55,12 +55,7 @@ void Pipe::movePipes()
 
 void Pipe::calculateRandomYPos(float x)
 {
-	/* Generate random number */
-	std::random_device dev;
-	std::mt19937 rng(dev());
-	std::uniform_int_distribution<std::mt19937::result_type> dist6(20, SCREEN_HEIGHT / 2);
-
-	float yPos = dist6(rng);
+	float yPos = rand() % (SCREEN_HEIGHT / 2) + 20;
 
 	/*
 	* Both Pipes use the same y-position, being seperated by a little offset
