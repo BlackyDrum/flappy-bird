@@ -16,11 +16,15 @@ class Game
 public:
 	static void run();
 
-	static void settings(bool& showSettings, int& moveSpeed, int& background, float& gapBetweenPipes, int& pipeColor, bool& showBoundingBoxes, float RGB[], int& birdColor, float& gravity, int& volume, bool& invincible, int& scoreMultiplier, float& scale);
+	static void settings(bool& showSettings, int& moveSpeed, int& background, float& gapBetweenPipes, int& pipeColor, bool& showBoundingBoxes, float RGB[], int& birdColor, float& gravity, int& volume, bool& invincible, int& scoreMultiplier, float& scale, int, float[], int&);
 
 	static void serialize(int, float, float, int, bool, int, int, int, int, float, int);
 
 	static void deserialize(int&, float&, float&, int&, bool&, int&, int&, int&, int&, float&, int&);
+
+#ifdef _WIN32
+	static float getMemoryUse();
+#endif
 private:
 	Game() = default;
 };

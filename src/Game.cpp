@@ -18,6 +18,10 @@ void Game::run()
     float gravity = 0.25;
     float scale = 1.0;
 
+    const int MaxMemoryHistory = 100;
+    float memoryHistory[MaxMemoryHistory] = {};
+    int memoryIndex = 0;
+
     deserialize(moveSpeed, gapBetweenPipes, gravity, scoreMultiplier, showBoundingBoxes, background, pipeColor, birdColor, volume, scale, highscore);
 
     Text text{highscore};
@@ -95,7 +99,7 @@ void Game::run()
         ImGui::SFML::Update(window, delta.restart());
 
         if (showSettings)
-            settings(showSettings, moveSpeed, background, gapBetweenPipes, pipeColor, showBoundingBoxes, boundingColorRGB, birdColor, gravity, volume, invincible, scoreMultiplier, scale);
+            settings(showSettings, moveSpeed, background, gapBetweenPipes, pipeColor, showBoundingBoxes, boundingColorRGB, birdColor, gravity, volume, invincible, scoreMultiplier, scale, MaxMemoryHistory, memoryHistory, memoryIndex);
 
         if (!gamePause && !gameLost)
         {
@@ -214,8 +218,33 @@ void Game::run()
         delete p;
 
 }
+#ifdef _WIN32
+float Game::getMemoryUse()
+{
+    PROCESS_MEMORY_COUNTERS_EX pmc;
+    if (!GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS*)&pmc, sizeof(pmc))) {
+        // Error handling
+        DWORD errorCode = GetLastError();
+        LPSTR messageBuffer = nullptr;
+        size_t size = FormatMessageA(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
+            NULL, errorCode, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), (LPSTR)&messageBuffer, 0, NULL);
+        if (messageBuffer) {
+            std::cout << "Failed to retrieve memory usage: " << messageBuffer << std::endl;
+            LocalFree(messageBuffer);
+        }
+        return 0.0f;
+    }
 
-void Game::settings(bool& showSettings, int& moveSpeed, int& background, float& gapBetweenPipes, int& pipeColor, bool& showBoundingBoxes, float RGB[], int& birdColor, float& gravity, int& volume, bool& invincible, int& scoreMultiplier, float& scale)
+    SIZE_T physicalMemory = pmc.WorkingSetSize;
+    float memoryUsage = static_cast<float>(physicalMemory) / (1024.0f * 1024.0f); // Convert to MB
+
+    return memoryUsage;
+}
+#endif
+
+sf::Clock frameClock;
+
+void Game::settings(bool& showSettings, int& moveSpeed, int& background, float& gapBetweenPipes, int& pipeColor, bool& showBoundingBoxes, float RGB[], int& birdColor, float& gravity, int& volume, bool& invincible, int& scoreMultiplier, float& scale, int MaxMemoryHistory, float memoryHistory[], int& memoryIndex)
 {
     ImGui::Begin("Settings", &showSettings);
 
@@ -258,7 +287,6 @@ void Game::settings(bool& showSettings, int& moveSpeed, int& background, float& 
         RGB[2] = 0;
     }
         
-
     ImGui::NewLine();
 
     if (ImGui::CollapsingHeader("Assets"))
@@ -280,6 +308,25 @@ void Game::settings(bool& showSettings, int& moveSpeed, int& background, float& 
         ImGui::NewLine();
 
         ImGui::SliderInt("Volume", &volume, 0, 100);
+    }
+
+    if (ImGui::CollapsingHeader("Statistics"))
+    {
+        sf::Time elapsedTime = frameClock.restart();
+
+        float deltaTime = elapsedTime.asSeconds();
+        int fps = static_cast<int>(1.0f / deltaTime);
+
+        ImGui::Text("FPS: %d", fps);
+
+#ifdef _WIN32
+        float currentMemoryUse = getMemoryUse();
+        memoryHistory[memoryIndex] = static_cast<float>(currentMemoryUse);
+        memoryIndex = (memoryIndex + 1) % MaxMemoryHistory;
+
+        ImGui::Text("Current Memory usage: %.2f MB", currentMemoryUse);
+        ImGui::PlotLines("", memoryHistory, MaxMemoryHistory, memoryIndex, "Memory Use", 0.0f, 100.0f, ImVec2(0, 80));
+#endif
     }
 
     ImGui::End();

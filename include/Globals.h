@@ -15,7 +15,10 @@
 #include <memory.h>
 #include <cmath>
 #include <fstream>
-
+#ifdef _WIN32
+#include<Windows.h>
+#include <Psapi.h>
+#endif
 const unsigned int SCREEN_WIDTH = 864, SCREEN_HEIGHT = 510;
 
 #endif
