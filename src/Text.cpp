@@ -21,16 +21,20 @@ void Text::setup()
 	m_lost.setFont(m_font);
 	m_lost.setString("You Lost");
 	m_lost.setCharacterSize(150);
-	m_lost.setFillColor(sf::Color::Black);
+	m_lost.setFillColor(sf::Color::White);
 
 	m_restartInfo.setFont(m_font);
 	m_restartInfo.setString("Press R to restart");
 	m_restartInfo.setCharacterSize(75);
-	m_restartInfo.setFillColor(sf::Color::Black);
+	m_restartInfo.setFillColor(sf::Color::White);
 
 	m_score.setFont(m_scoreFont);
 	m_score.setString("0");
 	m_score.setCharacterSize(50);
+
+	m_highscore.setFont(m_scoreFont);
+	m_highscore.setString("Your current Highscore: " + std::to_string(i_highscore));
+	m_highscore.setCharacterSize(20);
 
 	/* position the text in the middle of the screen */
 	m_start.setOrigin(m_start.getLocalBounds().left + m_start.getLocalBounds().width / 2.0f,
@@ -53,6 +57,10 @@ void Text::setup()
 		m_score.getLocalBounds().top + m_score.getLocalBounds().height / 2.0f);
 	m_score.setPosition(sf::Vector2f(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 6.0f));
 
+	m_highscore.setOrigin(m_highscore.getLocalBounds().left + m_highscore.getLocalBounds().width / 2.0f,
+		m_highscore.getLocalBounds().top + m_highscore.getLocalBounds().height / 2.0f);
+	m_highscore.setPosition(sf::Vector2f(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 1.65f));
+
 	i_score = 0;
 }
 
@@ -65,4 +73,11 @@ bool Text::incrementScore(sf::Sprite player, std::pair<sf::Sprite, sf::Sprite> p
 	}
 	
 	return false;
+}
+
+void Text::set_highscore(int highscore)
+{
+	i_highscore = highscore;
+
+	m_highscore.setString("Your current Highscore: " + std::to_string(i_highscore));
 }

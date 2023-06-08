@@ -28,6 +28,8 @@ void Pipe::setup()
 	/* One pipe being mirrored */
 	m_pipe.first.setScale(1.0, -1.0);
 	m_boundingBox.first.setScale(1.0, -1.0);
+
+	m_canAddToScore = true;
 }
 
 void Pipe::movePipes()

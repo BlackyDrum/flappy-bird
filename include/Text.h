@@ -5,8 +5,8 @@
 
 class Text {
 public:
-	Text()
-		: i_score{ 0 }, m_scoreMultiplier{ 1 } {}
+	Text(int highscore)
+		: i_score{ 0 }, i_highscore{ highscore }, m_scoreMultiplier{ 1 } {}
 
 	bool loadAssets();
 
@@ -19,8 +19,11 @@ public:
 	sf::Text get_lost() const { return m_lost; }
 	sf::Text get_restartInfo() const { return m_restartInfo; }
 	sf::Text get_score() const { return m_score; }
+	sf::Text get_highscore() const { return m_highscore; }
+	int get_highscoreInt() const { return i_highscore; }
 
 	void set_scoreMultiplier(int multiplier) { m_scoreMultiplier = multiplier; }
+	void set_highscore(int highscore);
 private:
 	sf::Font m_font;
 	sf::Font m_scoreFont;
@@ -29,9 +32,9 @@ private:
 	sf::Text m_pause;
 	sf::Text m_lost;
 	sf::Text m_restartInfo;
-	sf::Text m_score;
+	sf::Text m_score, m_highscore;
 
-	int i_score;
+	int i_score, i_highscore;
 
 	int m_scoreMultiplier;
 };

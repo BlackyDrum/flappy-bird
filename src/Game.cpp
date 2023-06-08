@@ -10,7 +10,7 @@ void Game::run()
     sf::Clock delta;
 
     bool showSettings = false, showBoundingBoxes = false, gameStart = false, gamePause = false, gameLost = false;
-    int background = 0, moveSpeed = 3, pipeColor = 0, birdColor = 0, scoreMultiplier = 1;
+    int background = 0, moveSpeed = 3, pipeColor = 0, birdColor = 0, scoreMultiplier = 1, highscore = 0, currentScore = 0;
     float gapBetweenPipes = 150.0;
     float boundingColorRGB[3] = { sf::Color::Red.r / 255, 0, 0 };
     int volume = 100;
@@ -18,9 +18,10 @@ void Game::run()
     float gravity = 0.25;
     float scale = 1.0;
 
-    deserialize(moveSpeed, gapBetweenPipes, gravity, scoreMultiplier, showBoundingBoxes, background, pipeColor, birdColor, volume, scale);
 
-    Text text;
+    deserialize(moveSpeed, gapBetweenPipes, gravity, scoreMultiplier, showBoundingBoxes, background, pipeColor, birdColor, volume, scale, highscore);
+
+    Text text{highscore};
     if (!text.loadAssets())
         return;
     text.setup();
@@ -55,7 +56,7 @@ void Game::run()
     {
         sf::Event event;
 
-        serialize(moveSpeed, gapBetweenPipes, gravity, scoreMultiplier, showBoundingBoxes, background, pipeColor, birdColor, volume, scale);
+        serialize(moveSpeed, gapBetweenPipes, gravity, scoreMultiplier, showBoundingBoxes, background, pipeColor, birdColor, volume, scale, text.get_highscoreInt());
 
         while (window.pollEvent(event))
         {
@@ -87,6 +88,7 @@ void Game::run()
                     player.setup();
                     for (auto& p : pipes)
                         p->setup();
+                    currentScore = 0;
                 }
             }
         }
@@ -119,6 +121,14 @@ void Game::run()
             if (text.incrementScore(player.get_bird(), p->get_Pipe(), p->get_canAddToScore()))
             {
                 p->set_canAddtoScore(false);
+                currentScore++;
+
+                if (currentScore > text.get_highscoreInt())
+                {
+                    text.set_highscore(currentScore);
+                    highscore = currentScore;
+                }
+                    
             }
         }
 
@@ -126,6 +136,8 @@ void Game::run()
         {
             gameLost = true;
             sounds.playHit();
+
+            text.set_highscore(highscore);
         }
 
         for (auto& p : pipes)
@@ -134,6 +146,8 @@ void Game::run()
             {
                 gameLost = true;
                 sounds.playHit();
+
+                text.set_highscore(highscore);
             }
 
         }
@@ -184,6 +198,7 @@ void Game::run()
         {
             window.draw(text.get_lost());
             window.draw(text.get_restartInfo());
+            window.draw(text.get_highscore());
         }
 
 
@@ -249,7 +264,7 @@ void Game::settings(bool& showSettings, int& moveSpeed, int& background, float& 
     ImGui::End();
 }
 
-void Game::serialize(int moveSpeed, float gap, float gravity, int scoreMultiplier, bool box, int theme, int pipe, int bird, int volume, float scale)
+void Game::serialize(int moveSpeed, float gap, float gravity, int scoreMultiplier, bool box, int theme, int pipe, int bird, int volume, float scale, int highscore)
 {
     std::ofstream settings("game/settings.json");
 
@@ -267,6 +282,7 @@ void Game::serialize(int moveSpeed, float gap, float gravity, int scoreMultiplie
     assets["pipe"] = pipe;
     assets["bird"] = bird;
     assets["volume"] = volume;
+    assets["highscore"] = highscore;
 
     root["Settings"] = data;
     root["Assets"] = assets;
@@ -276,7 +292,7 @@ void Game::serialize(int moveSpeed, float gap, float gravity, int scoreMultiplie
     settings.close();
 }
 
-void Game::deserialize(int& moveSpeed, float& gap, float& gravity, int& scoreMultiplier, bool& box, int& theme, int& pipe, int& bird, int& volume, float scale)
+void Game::deserialize(int& moveSpeed, float& gap, float& gravity, int& scoreMultiplier, bool& box, int& theme, int& pipe, int& bird, int& volume, float& scale, int& highscore)
 {
     std::ifstream settings("game/settings.json");
 
@@ -297,4 +313,5 @@ void Game::deserialize(int& moveSpeed, float& gap, float& gravity, int& scoreMul
     pipe = completeJsonData["Assets"]["pipe"].asInt();
     bird = completeJsonData["Assets"]["bird"].asInt();
     volume = completeJsonData["Assets"]["volume"].asInt();
+    highscore = completeJsonData["Assets"]["highscore"].asInt();
 }
