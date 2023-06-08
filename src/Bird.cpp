@@ -21,7 +21,7 @@ void Bird::setup()
 	m_boundingBox.setFillColor(sf::Color::Transparent);
 	m_boundingBox.setOutlineColor(m_boundingColor);
 	m_boundingBox.setOutlineThickness(3);
-	m_boundingBox.setSize(sf::Vector2f(m_bird.getTexture()->getSize().x, m_bird.getTexture()->getSize().y));
+	m_boundingBox.setSize(sf::Vector2f(m_bird.getTexture()->getSize().x * m_bird.getScale().x, m_bird.getTexture()->getSize().y * m_bird.getScale().y));
 	m_boundingBox.setPosition(m_bird.getPosition());
 
 	m_gravity = c_gravityForce;
