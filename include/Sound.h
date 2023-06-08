@@ -17,6 +17,8 @@ public:
 
 	void playWing();
 
+	void playPoint();
+
 	void set_volume(int volume) { m_volume = volume; }
 private:
 	sf::SoundBuffer m_hitBuffer;
@@ -24,6 +26,9 @@ private:
 
 	sf::SoundBuffer m_wingBuffer;
 	sf::Sound m_wing;
+
+	sf::SoundBuffer m_pointBuffer;
+	sf::Sound m_point;
 
 	bool m_isPlayingSound;
 

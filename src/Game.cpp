@@ -120,6 +120,8 @@ void Game::run()
 
             if (text.incrementScore(player.get_bird(), p->get_Pipe(), p->get_canAddToScore()))
             {
+                sounds.playPoint();
+
                 p->set_canAddtoScore(false);
                 currentScore++;
 
