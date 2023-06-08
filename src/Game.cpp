@@ -24,7 +24,7 @@ void Game::run()
 
     deserialize(moveSpeed, gapBetweenPipes, gravity, scoreMultiplier, showBoundingBoxes, background, pipeColor, birdColor, volume, scale, highscore);
 
-    Text text{highscore};
+    Text text{ highscore };
     if (!text.loadAssets())
         return;
     text.setup();
@@ -133,7 +133,7 @@ void Game::run()
                     text.set_highscore(currentScore);
                     highscore = currentScore;
                 }
-                    
+
             }
         }
 
@@ -241,18 +241,15 @@ float Game::getMemoryUse()
     return memoryUsage;
 }
 #else
-std::string Game::readMeminfoValue(const std::string& key)
+std::string Game::readStatus(const std::string& key, std::string fileName)
 {
-    std::ifstream file("/proc/meminfo");
+    std::ifstream file(fileName);
     std::string line;
 
     while (std::getline(file, line)) {
         if (line.find(key) != std::string::npos) {
             std::string value = line.substr(line.find(':') + 1);
-            // Remove leading whitespace
             value.erase(0, value.find_first_not_of(" \t"));
-            // Remove trailing newline character
-            value.pop_back();
             return value;
         }
     }
@@ -276,7 +273,7 @@ void Game::settings(bool& showSettings, int& moveSpeed, int& background, float& 
     ImGui::SliderFloat("Gravity", &gravity, 0.01, 1);
 
     ImGui::SliderInt("Score Multiplier", &scoreMultiplier, 1, 10);
-    
+
     ImGui::NewLine();
 
     ImGui::Checkbox("Show Bounding Boxes", &showBoundingBoxes);
@@ -305,7 +302,7 @@ void Game::settings(bool& showSettings, int& moveSpeed, int& background, float& 
         RGB[1] = 0;
         RGB[2] = 0;
     }
-        
+
     ImGui::NewLine();
 
     if (ImGui::CollapsingHeader("Assets"))
@@ -347,16 +344,11 @@ void Game::settings(bool& showSettings, int& moveSpeed, int& background, float& 
         ImGui::PlotLines("", memoryHistory, MaxMemoryHistory, memoryIndex, "Memory Use", 0.0f, 100.0f, ImVec2(0, 80));
 #else
         // Get total memory
-        std::string totalMemory = readMeminfoValue("MemTotal");
-        ImGui::Text("Total Memory %i MB", std::stoi(totalMemory) / 1024);
-
+        std::string useMemory = readStatus("VmRSS", "/proc/self/status");
         // Get free memory
-        std::string freeMemory = readMeminfoValue("MemFree");
-        ImGui::Text("Free Memory %i MB", std::stoi(freeMemory) / 1024);
-
-        // Get available memory
-        std::string usedMemory = readMeminfoValue("MemAvailable");
-        ImGui::Text("Available Memory %i MB", std::stoi(usedMemory) / 1024);
+        std::string totalMemory = readStatus("MemFree", "/proc/meminfo");
+        ImGui::Text("Total Memory: %i MB", std::stoi(totalMemory) / 1024);
+        ImGui::Text("Flappy Bird Memory: %i MB", std::stoi(useMemory) / 1024);
 
 #endif
     }
