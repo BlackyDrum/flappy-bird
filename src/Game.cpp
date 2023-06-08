@@ -2,7 +2,7 @@
 
 void Game::run()
 {
-    sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Flappy Bird", sf::Style::Close);
+    sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Flappy Bird");
     window.setFramerateLimit(60);
 
     ImGui::SFML::Init(window);
