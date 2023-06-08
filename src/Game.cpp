@@ -240,6 +240,25 @@ float Game::getMemoryUse()
 
     return memoryUsage;
 }
+#else
+std::string readMeminfoValue(const std::string& key)
+{
+    std::ifstream file("/proc/meminfo");
+    std::string line;
+
+    while (std::getline(file, line)) {
+        if (line.find(key) != std::string::npos) {
+            std::string value = line.substr(line.find(':') + 1);
+            // Remove leading whitespace
+            value.erase(0, value.find_first_not_of(" \t"));
+            // Remove trailing newline character
+            value.pop_back();
+            return value;
+        }
+    }
+
+    return "";
+}
 #endif
 
 sf::Clock frameClock;
@@ -326,6 +345,19 @@ void Game::settings(bool& showSettings, int& moveSpeed, int& background, float& 
 
         ImGui::Text("Current Memory usage: %.2f MB", currentMemoryUse);
         ImGui::PlotLines("", memoryHistory, MaxMemoryHistory, memoryIndex, "Memory Use", 0.0f, 100.0f, ImVec2(0, 80));
+#else
+        // Get total memory
+        std::string totalMemory = std::to_string((std::stoi(readMeminfoValue("MemTotal")) / 1024));
+        ImGui::Text("Total Memory: %.2f MB", totalMemory);
+
+        // Get free memory
+        std::string freeMemory = std::to_string((std::stoi(readMeminfoValue("MemFree")) / 1024));
+        ImGui::Text("Free Memory: %.2f MB", freeMemory);
+
+        // Get used memory
+        std::to_string((std::stoi(readMeminfoValue("MemAvailable")) / 1024));
+        ImGui::Text("Used Memory: %.2f MB", usedMemory);
+
 #endif
     }
 
