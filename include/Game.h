@@ -24,6 +24,8 @@ public:
 
 #ifdef _WIN32
 	static float getMemoryUse();
+#else
+	static std::string readMeminfoValue(const std::string& key);
 #endif
 private:
 	Game() = default;
