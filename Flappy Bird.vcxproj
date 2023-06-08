@@ -147,6 +147,7 @@
     <ClCompile Include="src\Bird.cpp" />
     <ClCompile Include="src\Collision.cpp" />
     <ClCompile Include="src\Game.cpp" />
+    <ClCompile Include="src\jsoncpp.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Pipe.cpp" />
     <ClCompile Include="src\Sound.cpp" />

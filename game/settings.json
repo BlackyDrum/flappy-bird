@@ -10,6 +10,6 @@
       "gravity" : 0.25,
       "scoreMultiplier" : 1,
       "showBoundingBox" : false,
-      "speed" : 3
+      "speed" : 1
    }
 }
