@@ -242,6 +242,26 @@ void Game::settings(bool& showSettings, int& moveSpeed, int& background, float& 
 
     ImGui::NewLine();
 
+    if (ImGui::Button("Reset Settings"))
+    {
+        moveSpeed = 3;
+        background = 0;
+        gapBetweenPipes = 150.0;
+        pipeColor = 0;
+        showBoundingBoxes = false;
+        birdColor = 0;
+        gravity = 0.25;
+        invincible = false;
+        scoreMultiplier = 1;
+        scale = 1.0;
+        RGB[0] = 1;
+        RGB[1] = 0;
+        RGB[2] = 0;
+    }
+        
+
+    ImGui::NewLine();
+
     if (ImGui::CollapsingHeader("Assets"))
     {
         ImGui::RadioButton("Day Theme", &background, 0);
