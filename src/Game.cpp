@@ -241,7 +241,7 @@ float Game::getMemoryUse()
     return memoryUsage;
 }
 #else
-std::string readMeminfoValue(const std::string& key)
+std::string Game::readMeminfoValue(const std::string& key)
 {
     std::ifstream file("/proc/meminfo");
     std::string line;
@@ -355,7 +355,7 @@ void Game::settings(bool& showSettings, int& moveSpeed, int& background, float& 
         ImGui::Text("Free Memory: %.2f MB", freeMemory);
 
         // Get used memory
-        std::to_string((std::stoi(readMeminfoValue("MemAvailable")) / 1024));
+        std::string usedMemory = std::to_string((std::stoi(readMeminfoValue("MemAvailable")) / 1024));
         ImGui::Text("Used Memory: %.2f MB", usedMemory);
 
 #endif
