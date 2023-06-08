@@ -13,7 +13,7 @@ ifeq ($(OS),Windows_NT)
 	LIBS = $(SFML_PATH)\lib\libsfml-graphics.a $(SFML_PATH)\lib\libsfml-window.a $(SFML_PATH)\lib\libsfml-system.a $(SFML_PATH)\lib\libsfml-audio.a -lopengl32 -lpsapi
 else
 	EXECUTABLE = flappy-bird
-	LIBS = -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio -lGL -lpsapi
+	LIBS = -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio -lGL
 endif
 
 .PHONY: all clean
