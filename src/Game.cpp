@@ -16,8 +16,9 @@ void Game::run()
     int volume = 100;
     bool invincible = false;
     float gravity = 0.25;
+    float scale = 1.0;
 
-    deserialize(moveSpeed, gapBetweenPipes, gravity, scoreMultiplier, showBoundingBoxes, background, pipeColor, birdColor, volume);
+    deserialize(moveSpeed, gapBetweenPipes, gravity, scoreMultiplier, showBoundingBoxes, background, pipeColor, birdColor, volume, scale);
 
     Text text;
     if (!text.loadAssets())
@@ -54,7 +55,7 @@ void Game::run()
     {
         sf::Event event;
 
-        serialize(moveSpeed, gapBetweenPipes, gravity, scoreMultiplier, showBoundingBoxes, background, pipeColor, birdColor, volume);
+        serialize(moveSpeed, gapBetweenPipes, gravity, scoreMultiplier, showBoundingBoxes, background, pipeColor, birdColor, volume, scale);
 
         while (window.pollEvent(event))
         {
@@ -93,7 +94,7 @@ void Game::run()
         ImGui::SFML::Update(window, delta.restart());
 
         if (showSettings)
-            settings(showSettings, moveSpeed, background, gapBetweenPipes, pipeColor, showBoundingBoxes, boundingColorRGB, birdColor, gravity, volume, invincible, scoreMultiplier);
+            settings(showSettings, moveSpeed, background, gapBetweenPipes, pipeColor, showBoundingBoxes, boundingColorRGB, birdColor, gravity, volume, invincible, scoreMultiplier, scale);
 
         if (!gamePause && !gameLost)
         {
@@ -139,6 +140,7 @@ void Game::run()
 
         player.setBoundingColor(boundingColorRGB);
         player.changeColor(birdColor);
+        player.set_scale(scale);
 
         player.set_gravity(gravity);
 
@@ -197,11 +199,13 @@ void Game::run()
 
 }
 
-void Game::settings(bool& showSettings, int& moveSpeed, int& background, float& gapBetweenPipes, int& pipeColor, bool& showBoundingBoxes, float RGB[], int& birdColor, float& gravity, int& volume, bool& invincible, int& scoreMultiplier)
+void Game::settings(bool& showSettings, int& moveSpeed, int& background, float& gapBetweenPipes, int& pipeColor, bool& showBoundingBoxes, float RGB[], int& birdColor, float& gravity, int& volume, bool& invincible, int& scoreMultiplier, float& scale)
 {
     ImGui::Begin("Settings", &showSettings);
 
     ImGui::SliderInt("Flying Speed", &moveSpeed, 1, 7);
+
+    ImGui::SliderFloat("Player Scale", &scale, 1, 2);
 
     ImGui::SliderFloat("Gap between Pipes", &gapBetweenPipes, 60.0, 140.0);
 
@@ -245,7 +249,7 @@ void Game::settings(bool& showSettings, int& moveSpeed, int& background, float& 
     ImGui::End();
 }
 
-void Game::serialize(int moveSpeed, float gap, float gravity, int scoreMultiplier, bool box, int theme, int pipe, int bird, int volume)
+void Game::serialize(int moveSpeed, float gap, float gravity, int scoreMultiplier, bool box, int theme, int pipe, int bird, int volume, float scale)
 {
     std::ofstream settings("game/settings.json");
 
@@ -257,6 +261,7 @@ void Game::serialize(int moveSpeed, float gap, float gravity, int scoreMultiplie
     data["gravity"] = gravity;
     data["scoreMultiplier"] = scoreMultiplier;
     data["showBoundingBox"] = box;
+    data["scale"] = scale;
 
     assets["theme"] = theme;
     assets["pipe"] = pipe;
@@ -271,7 +276,7 @@ void Game::serialize(int moveSpeed, float gap, float gravity, int scoreMultiplie
     settings.close();
 }
 
-void Game::deserialize(int& moveSpeed, float& gap, float& gravity, int& scoreMultiplier, bool& box, int& theme, int& pipe, int& bird, int& volume)
+void Game::deserialize(int& moveSpeed, float& gap, float& gravity, int& scoreMultiplier, bool& box, int& theme, int& pipe, int& bird, int& volume, float scale)
 {
     std::ifstream settings("game/settings.json");
 
@@ -286,6 +291,7 @@ void Game::deserialize(int& moveSpeed, float& gap, float& gravity, int& scoreMul
     gravity = completeJsonData["Settings"]["gravity"].asFloat();
     scoreMultiplier = completeJsonData["Settings"]["scoreMultiplier"].asInt();
     box = completeJsonData["Settings"]["showBoundingBox"].asBool();
+    scale = completeJsonData["Settings"]["scale"].asFloat();
 
     theme = completeJsonData["Assets"]["theme"].asInt();
     pipe = completeJsonData["Assets"]["pipe"].asInt();

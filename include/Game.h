@@ -16,11 +16,11 @@ class Game
 public:
 	static void run();
 
-	static void settings(bool& showSettings, int& moveSpeed, int& background, float& gapBetweenPipes, int& pipeColor, bool& showBoundingBoxes, float RGB[], int& birdColor, float& gravity, int& volume, bool& invincible, int& scoreMultiplier);
+	static void settings(bool& showSettings, int& moveSpeed, int& background, float& gapBetweenPipes, int& pipeColor, bool& showBoundingBoxes, float RGB[], int& birdColor, float& gravity, int& volume, bool& invincible, int& scoreMultiplier, float& scale);
 
-	static void serialize(int, float, float, int, bool, int, int, int, int);
+	static void serialize(int, float, float, int, bool, int, int, int, int, float);
 
-	static void deserialize(int&, float&, float&, int&, bool&, int&, int&, int&, int&);
+	static void deserialize(int&, float&, float&, int&, bool&, int&, int&, int&, int&, float);
 private:
 	Game() = default;
 };

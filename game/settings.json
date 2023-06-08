@@ -8,6 +8,7 @@
    "Settings" : {
       "gap" : 150.0,
       "gravity" : 0.25,
+      "scale" : 1.0,
       "scoreMultiplier" : 1,
       "showBoundingBox" : false,
       "speed" : 3

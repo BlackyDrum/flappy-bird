@@ -21,7 +21,7 @@ void Bird::setup()
 	m_boundingBox.setFillColor(sf::Color::Transparent);
 	m_boundingBox.setOutlineColor(m_boundingColor);
 	m_boundingBox.setOutlineThickness(3);
-	m_boundingBox.setSize(sf::Vector2f(m_bird.getTexture()->getSize().x * m_bird.getScale().x, m_bird.getTexture()->getSize().y * m_bird.getScale().y));
+	m_boundingBox.setSize(sf::Vector2f(m_bird.getTextureRect().width * m_bird.getScale().x, m_bird.getTextureRect().height * m_bird.getScale().y));
 	m_boundingBox.setPosition(m_bird.getPosition());
 
 	m_gravity = c_gravityForce;
@@ -37,6 +37,8 @@ void Bird::gravity()
 		m_gravity += c_gravityForce;
 
 		m_bird.setRotation(15);
+
+		m_boundingBox.setRotation(15);
 	}
 	
 	else if (m_isJumping)
@@ -45,6 +47,8 @@ void Bird::gravity()
 		m_jumpForce -= c_gravityForce;
 
 		m_bird.setRotation(-15);
+
+		m_boundingBox.setRotation(-15);
 	}
 
 	if (m_jumpForce <= 0)
@@ -117,4 +121,13 @@ void Bird::changeColor(int color)
 			m_currentFlap = up;
 		}
 	}
+}
+
+void Bird::set_scale(float scale)
+{
+	m_scale = scale;
+
+	m_bird.setScale(sf::Vector2f(scale,scale));
+
+	m_boundingBox.setSize(sf::Vector2f(m_bird.getTextureRect().width * m_bird.getScale().x, m_bird.getTextureRect().height * m_bird.getScale().y));
 }
