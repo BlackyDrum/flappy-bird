@@ -18,7 +18,6 @@ void Game::run()
     float gravity = 0.25;
     float scale = 1.0;
 
-
     deserialize(moveSpeed, gapBetweenPipes, gravity, scoreMultiplier, showBoundingBoxes, background, pipeColor, birdColor, volume, scale, highscore);
 
     Text text{highscore};
@@ -123,7 +122,7 @@ void Game::run()
                 sounds.playPoint();
 
                 p->set_canAddtoScore(false);
-                currentScore++;
+                currentScore += scoreMultiplier;
 
                 if (currentScore > text.get_highscoreInt())
                 {
@@ -229,7 +228,7 @@ void Game::settings(bool& showSettings, int& moveSpeed, int& background, float& 
     ImGui::SliderFloat("Gravity", &gravity, 0.01, 1);
 
     ImGui::SliderInt("Score Multiplier", &scoreMultiplier, 1, 10);
-
+    
     ImGui::NewLine();
 
     ImGui::Checkbox("Show Bounding Boxes", &showBoundingBoxes);
