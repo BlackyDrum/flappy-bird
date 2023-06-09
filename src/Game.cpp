@@ -4,7 +4,7 @@ void Game::run()
 {
     sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Flappy Bird");
     window.setFramerateLimit(60);
-
+    srand(time(NULL));
     ImGui::SFML::Init(window);
 
     sf::Clock delta;
@@ -56,6 +56,8 @@ void Game::run()
     if (!player.loadAssets())
         return;
     player.setup();
+
+    Renderer renderer;
 
     while (window.isOpen())
     {
@@ -162,7 +164,6 @@ void Game::run()
         player.setBoundingColor(boundingColorRGB);
         player.changeColor(birdColor);
         player.set_scale(scale);
-
         player.set_gravity(gravity);
 
         if (gameStart && !gameLost && !gamePause)
@@ -172,45 +173,9 @@ void Game::run()
 
         text.set_scoreMultiplier(scoreMultiplier);
 
-        window.clear();
-
-        window.draw(world.get_background());
-
-        for (auto& p : pipes)
-        {
-            window.draw(p->get_Pipe().first);
-            window.draw(p->get_Pipe().second);
-
-            if (gameStart && showBoundingBoxes)
-            {
-                window.draw(p->get_BoundingBox().first);
-                window.draw(p->get_BoundingBox().second);
-
-                window.draw(player.get_boundingBox());
-            }
-        }
-
-        window.draw(text.get_score());
-
-        window.draw(world.get_ground().first);
-        window.draw(world.get_ground().second);
-
-        window.draw(player.get_bird());
-
-        if (!gameStart)
-            window.draw(text.get_start());
-        if (gameStart && gamePause && !gameLost)
-            window.draw(text.get_pause());
-        if (gameLost && !gamePause)
-        {
-            window.draw(text.get_lost());
-            window.draw(text.get_restartInfo());
-            window.draw(text.get_highscore());
-        }
-
-
+        window.clear();    
+        renderer.draw(window, world, pipes, player, text, gameStart, gameLost, gamePause, showBoundingBoxes);
         ImGui::SFML::Render(window); // Needs to be last thing to be drawn
-
         window.display();
     }
 
@@ -218,5 +183,4 @@ void Game::run()
 
     for (auto& p : pipes)
         delete p;
-
 }
