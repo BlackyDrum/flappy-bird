@@ -100,13 +100,15 @@ void Settings::settings(bool& showSettings, int& moveSpeed, int& background, flo
 float Settings::getMemoryUse()
 {
     PROCESS_MEMORY_COUNTERS_EX pmc;
-    if (!GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS*)&pmc, sizeof(pmc))) {
+    if (!GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS*)&pmc, sizeof(pmc)))
+    {
         // Error handling
         DWORD errorCode = GetLastError();
         LPSTR messageBuffer = nullptr;
         size_t size = FormatMessageA(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
             NULL, errorCode, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), (LPSTR)&messageBuffer, 0, NULL);
-        if (messageBuffer) {
+        if (messageBuffer)
+        {
             std::cout << "Failed to retrieve memory usage: " << messageBuffer << std::endl;
             LocalFree(messageBuffer);
         }
@@ -124,8 +126,10 @@ std::string Settings::readStatus(const std::string& key, std::string fileName)
     std::ifstream file(fileName);
     std::string line;
 
-    while (std::getline(file, line)) {
-        if (line.find(key) != std::string::npos) {
+    while (std::getline(file, line))
+    {
+        if (line.find(key) != std::string::npos)
+        {
             std::string value = line.substr(line.find(':') + 1);
             value.erase(0, value.find_first_not_of(" \t"));
             return value;
