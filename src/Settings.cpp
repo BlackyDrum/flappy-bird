@@ -83,7 +83,7 @@ void Settings::settings(bool& showSettings, int& moveSpeed, int& background, flo
         ImGui::Text("Current Memory usage: %.2f MB", currentMemoryUse);
         ImGui::PlotLines("", memoryHistory, MaxMemoryHistory, memoryIndex, "Memory Use", 0.0f, 100.0f, ImVec2(0, 80));
 #else
-        // Get free memory
+        // Get used memory
         std::string useMemory = readStatus("VmRSS", "/proc/self/status");
         // Get total memory
         std::string totalMemory = readStatus("MemFree", "/proc/meminfo");
