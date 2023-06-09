@@ -83,9 +83,9 @@ void Settings::settings(bool& showSettings, int& moveSpeed, int& background, flo
         ImGui::Text("Current Memory usage: %.2f MB", currentMemoryUse);
         ImGui::PlotLines("", memoryHistory, MaxMemoryHistory, memoryIndex, "Memory Use", 0.0f, 100.0f, ImVec2(0, 80));
 #else
-        // Get total memory
-        std::string useMemory = readStatus("VmRSS", "/proc/self/status");
         // Get free memory
+        std::string useMemory = readStatus("VmRSS", "/proc/self/status");
+        // Get total memory
         std::string totalMemory = readStatus("MemFree", "/proc/meminfo");
         ImGui::Text("Total Memory: %i MB", std::stoi(totalMemory) / 1024);
         ImGui::Text("Flappy Bird Memory: %i MB", std::stoi(useMemory) / 1024);
