@@ -81,7 +81,7 @@ void Settings::settings(bool& showSettings, int& moveSpeed, int& background, flo
         memoryIndex = (memoryIndex + 1) % MaxMemoryHistory;
 
         ImGui::Text("Current Memory usage: %.2f MB", currentMemoryUse);
-        ImGui::PlotLines("", memoryHistory, MaxMemoryHistory, memoryIndex, "Memory Use", 0.0f, 100.0f, ImVec2(0, 80));
+        ImGui::PlotLines("", memoryHistory, MaxMemoryHistory, memoryIndex, "Memory Use", 0.0f, 150.0f, ImVec2(0, 80));
 #else
         // Get used memory
         std::string useMemory = readStatus("VmRSS", "/proc/self/status");
