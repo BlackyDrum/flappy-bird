@@ -88,7 +88,7 @@ void Settings::settings(bool& showSettings, int& moveSpeed, int& background, flo
         // Get total memory
         std::string totalMemory = readStatus("MemFree", "/proc/meminfo");
         ImGui::Text("Total Memory: %i MB", std::stoi(totalMemory) / 1024);
-        ImGui::Text("Flappy Bird Memory: %i MB", std::stoi(useMemory) / 1024);
+        ImGui::Text("Memory usage: %i MB", std::stoi(useMemory) / 1024);
 
 #endif
     }
