@@ -6,8 +6,8 @@ You have the option to modify some of the game options/assets such as flying spe
 
 
 ## Controls
-- ``Space`` - Add force to the bird
-- ``Enter`` - Open settings
+- ``Space`` - Jump
+- ``Enter`` - Settings
 - ``Escape`` - Pause
 
 ## Prerequisites
