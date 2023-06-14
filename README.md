@@ -6,8 +6,8 @@ You have the option to modify some of the game options/assets such as flying spe
 
 
 ## Controls
-- ``Space`` - Add force to the bird
-- ``Enter`` - Open settings
+- ``Space`` - Jump
+- ``Enter`` - Settings
 - ``Escape`` - Pause
 
 ## Prerequisites
@@ -48,8 +48,8 @@ $ make
 ```
 $ ./flappy-bird
 ```
-Note: <em>If you encounter any problems on Windows trying to run ``flappy-bird.exe``, make sure to put the .dll in the same directory as the .exe.
-You can find the .dll in the SFML ``bin`` folder.</em>
+Note: <em>If you encounter any problems on Windows trying to run ``flappy-bird.exe``, make sure to put the .dll in the same directory as the ``flappy-bird.exe``.
+You can find the .dll in the official SFML ``bin`` folder.</em>
 
 ## Acknowledgements
 
