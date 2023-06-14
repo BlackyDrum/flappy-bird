@@ -16,8 +16,6 @@ void Bird::setup()
 {
 	m_bird.setPosition(SCREEN_WIDTH / 4, SCREEN_HEIGHT / 3);
 
-	m_bird.setScale(1.2, 1.2);
-
 	m_boundingBox.setFillColor(sf::Color::Transparent);
 	m_boundingBox.setOutlineColor(m_boundingColor);
 	m_boundingBox.setOutlineThickness(3);
