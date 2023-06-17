@@ -48,8 +48,8 @@ $ make
 ```
 $ ./flappy-bird
 ```
-Note: <em>If you encounter any problems on Windows trying to run ``flappy-bird.exe``, make sure to put the .dll in the same directory as the ``flappy-bird.exe``.
-You can find the .dll in the official SFML ``bin`` folder.</em>
+Note: <strong>If you encounter any problems on Windows trying to run ``flappy-bird.exe``, make sure to put the .dll in the same directory as the ``flappy-bird.exe``.
+You can find the .dll in the official SFML ``bin`` folder.</strong>
 
 ## Acknowledgements
 
