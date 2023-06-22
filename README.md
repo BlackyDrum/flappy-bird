@@ -6,9 +6,24 @@ You have the option to modify some of the game options/assets such as flying spe
 
 
 ## Controls
-- ``Space`` - Jump
-- ``Enter`` - Settings
-- ``Escape`` - Pause
+<table>
+ <tr>
+  <td><strong>Key</strong></td>
+  <td><strong>Action</strong></td>
+ </tr>
+ <tr>
+  <td>Space</td>
+  <td>Jump</td>
+ </tr>
+  <tr>
+  <td>Enter</td>
+  <td>Settings</td>
+ </tr>
+  <tr>
+  <td>Escape</td>
+  <td>Pause</td>
+ </tr>
+</table>
 
 ## Prerequisites
 Before running the Flappy Bird clone, make sure you have the following installed on your system:
