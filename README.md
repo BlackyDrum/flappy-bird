@@ -39,7 +39,7 @@ $ sudo apt-get install libglu1-mesa-dev mesa-common-dev
 ```
 $ sudo apt-get install build-essential
 ```
-- On Windows, make sure to set the ``SFML_PATH`` variable to the root path of the SFML library:
+- On ``Windows``, make sure to set the ``SFML_PATH`` variable to the root path of the SFML library:
 ```
 set SFML_PATH=C:\path\to\sfml
 ```
